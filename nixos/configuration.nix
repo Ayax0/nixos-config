@@ -1,0 +1,107 @@
+# Edit this configuration file to define what should be installed on
+# your system.  Help is available in the configuration.nix(5) man page
+# and in the NixOS manual (accessible by running ‘nixos-help’).
+
+{ config, pkgs, lib, inputs, system, ... }:
+
+{
+  imports = [
+    ./hardware-configuration.nix
+  ];
+
+  # Bootloader.
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.useOSProber = true;
+
+  # Use latest kernel.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # Enable networking
+  networking.networkmanager.enable = true;
+  networking.hostName = "nixos";  
+
+  # Enable Flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # Set your time zone.
+  time.timeZone = "Europe/Zurich";
+  
+  # Set locale
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    supportedLocales = [
+      "de_CH.UTF-8/UTF-8"
+      "en_US.UTF-8/UTF-8"
+    ];
+
+    extraLocaleSettings = {
+      LC_TIME = "de_CH.UTF-8";
+      LC_NUMERIC = "de_CH.UTF-8";
+      LC_MONETARY = "de_CH.UTF-8";
+      LC_MEASUREMENT = "de_CH.UTF-8";
+      LC_PAPER = "de_CH.UTF-8";
+      LC_NAME = "de_CH.UTF-8";
+      LC_ADDRESS = "de_CH.UTF-8";
+      LC_TELEPHONE = "de_CH.UTF-8";
+      LC_IDENTIFICATION = "de_CH.UTF-8";
+      
+      LC_COLLATE = "en_US.UTF-8";
+    };
+  };
+
+  # Define a user account.
+  users.users.ayax0 = {
+    isNormalUser = true;
+    description = "Ayax0";
+    extraGroups = [ "networkmanager" "wheel" ];
+    packages = with pkgs; [];
+  };
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+  
+  programs.hyprland.enable = true;
+  programs.waybar.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  
+  # Packages
+  environment.systemPackages = with pkgs; [
+    wget
+    gcc
+    git
+    neovim
+    unzip
+    ripgrep
+
+    google-chrome
+    inputs.zen-browser.packages."${system}".default
+    vscode
+
+    hyprland
+    kitty
+    waybar
+    hyprpaper
+    hyprcursor
+    hyprlock
+    nautilus
+    rofi
+    pkgs.catppuccin-cursors.mochaMauve
+  ];
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
+
+  # Enable the OpenSSH daemon.
+  services.openssh.enable = true;
+
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "25.05"; # Did you read the comment?
+}
