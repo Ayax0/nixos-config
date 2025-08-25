@@ -10,9 +10,9 @@
   ];
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.supportedFilesystems = [ "ntfs" ];
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -61,37 +61,25 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   
-  programs.hyprland.enable = true;
-  programs.waybar.enable = true;
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-  
   # Packages
   environment.systemPackages = with pkgs; [
     wget
     gcc
     git
-    neovim
     unzip
     ripgrep
+    
+    nodejs_22
+    pnpm
 
     google-chrome
     inputs.zen-browser.packages."${system}".default
+    inputs.home-manager.packages."${system}".home-manager
     vscode
-
-    hyprland
-    kitty
-    waybar
-    hyprpaper
-    hyprcursor
-    hyprlock
-    nautilus
-    rofi
-    pkgs.catppuccin-cursors.mochaMauve
-  ];
-
-  fonts.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
+    neovim
+    postman
+    keeweb
+    teams-for-linux
   ];
 
   # Enable the OpenSSH daemon.
