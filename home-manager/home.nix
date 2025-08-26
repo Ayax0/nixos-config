@@ -2,7 +2,13 @@
 
 {
   imports = [
+    ../modules/home-manager/hyprcursor.nix
+    ../modules/home-manager/hyprland.nix
+    ../modules/home-manager/hyprlock.nix
+    ../modules/home-manager/hyprpaper.nix
     ../modules/home-manager/kitty.nix
+    ../modules/home-manager/rofi-theme.nix
+    ../modules/home-manager/rofi.nix
     ../modules/home-manager/theme.nix
   ];
 

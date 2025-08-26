@@ -44,14 +44,9 @@
   # Client-Tools in PATH:
   environment.systemPackages = with pkgs; [
     hyprland
-    hyprpaper
-    hyprcursor
-    hyprlock
-    waybar
-    rofi
     kitty
     nautilus
-    catppuccin-cursors.mochaMauve
+    waybar
 
     xdg-desktop-portal-hyprland
     xdg-desktop-portal-gtk
