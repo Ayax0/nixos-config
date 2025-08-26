@@ -3,7 +3,7 @@
   programs.hyprland.enable = true;
   programs.waybar.enable = true;
   
-  # services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
 
@@ -44,7 +44,7 @@
     kitty
     nautilus
     catppuccin-cursors.mochaMauve
-    # libsForQt5.qt5ct
+    libsForQt5.qt5ct
   ];
 
   fonts.packages = with pkgs; [
