@@ -33,6 +33,14 @@
     WLR_RENDERER = "vulkan";
   };
 
+  # Electron/Chromium-Apps standardmäßig Wayland nutzen
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    GBM_BACKEND = "nvidia-drm";
+    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+  };
+
   # Client-Tools in PATH:
   environment.systemPackages = with pkgs; [
     hyprland

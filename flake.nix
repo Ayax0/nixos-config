@@ -33,6 +33,7 @@
         modules = [
           self.nixosModules.hyprland
           self.nixosModules.docker
+          self.nixosModules.keeweb
           ./nixos/configuration.nix
         ];
       };

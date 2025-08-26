@@ -60,6 +60,10 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # Keyring
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.login.enableGnomeKeyring = true;
   
   # Packages
   environment.systemPackages = with pkgs; [
@@ -68,6 +72,8 @@
     git
     unzip
     ripgrep
+    libsecret
+    seahorse
     
     nodejs_22
     pnpm
@@ -78,7 +84,6 @@
     vscode
     neovim
     postman
-    keeweb
     teams-for-linux
   ];
 
