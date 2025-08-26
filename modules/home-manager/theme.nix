@@ -1,4 +1,5 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+
 {
   gtk = {
     enable = true;
@@ -17,18 +18,15 @@
   qt = {
     enable = true;
     platformTheme.name = "gtk";
-    style.name = "kvantum";
+    style = { name = "kvantum"; package = pkgs.catppuccin-kvantum; };
   };
 
-  home.packages = with pkgs; [
-    kvantum
-    catppuccin-kvantum
-  ];
-
-  home.sessionVariables = {
-    GTK_THEME = "Catppuccin-Mocha-Standard-Mauve-Dark";
-    QT_STYLE_OVERRIDE = "kvantum";
-  };
+  home.file.".config/Kvantum/kvantum.kvconfig".text = ''
+    [General]
+    theme=Catppuccin-Mocha
+  '';
 
   dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+
+  home.packages = with pkgs; [ catppuccin-kvantum ];
 }

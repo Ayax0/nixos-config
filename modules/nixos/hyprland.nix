@@ -52,7 +52,9 @@
     kitty
     nautilus
     catppuccin-cursors.mochaMauve
-    libsForQt5.qt5ct
+
+    xdg-desktop-portal-hyprland
+    xdg-desktop-portal-gtk
   ];
 
   fonts.packages = with pkgs; [

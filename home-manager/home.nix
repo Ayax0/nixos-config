@@ -1,34 +1,31 @@
+{ config, pkgs, ... }:
+
 {
-  inputs,
-  outputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
   imports = [
     ../modules/home-manager/kitty.nix
-    ../modules/home-manager/xdg.nix
+    ../modules/home-manager/theme.nix
   ];
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
-  };
+  nixpkgs.config.allowUnfree = true;
+
+  programs.home-manager.enable = true;
 
   home = {
     username = "ayax0";
     homeDirectory = "/home/ayax0";
   };
 
-  programs.home-manager.enable = true;
-
   programs.git = {
     enable = true;
     userName = "Simon Gander";
     userEmail = "sg@vtt.ch";
-    extraConfig.init.defaultBranch = "main";
+    extraConfig = {
+      init.defaultBranch = "main";
+      pull.rebase = true;
+      push.autoSetupRemote = true;
+      core.pager = "delta";
+      delta = { navigate = true; line-numbers = true; };
+    };
   };
 
   systemd.user.startServices = "sd-switch";
