@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 {
   programs.hyprland.enable = true;
-  programs.waybar.enable = true;
   
   services.xserver.videoDrivers = [ "nvidia" ];
   services.displayManager.sddm.enable = true;
@@ -46,7 +45,6 @@
     hyprland
     kitty
     nautilus
-    waybar
 
     xdg-desktop-portal-hyprland
     xdg-desktop-portal-gtk

@@ -10,6 +10,7 @@
     ../modules/home-manager/rofi-theme.nix
     ../modules/home-manager/rofi.nix
     ../modules/home-manager/theme.nix
+    ../modules/home-manager/waybar.nix
   ];
 
   nixpkgs.config.allowUnfree = true;

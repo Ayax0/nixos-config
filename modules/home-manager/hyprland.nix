@@ -15,11 +15,6 @@
         "DP-4,1920x1080@60,3840x1080,1"
       ];
 
-      #### PROGRAMS & AUTOSTART ####
-      "exec-once" = [
-        "waybar"
-      ];
-
       #### ENVIRONMENT VARIABLES ####
       env = [
         "WLR_DRM_NO_ATOMIC,1"
