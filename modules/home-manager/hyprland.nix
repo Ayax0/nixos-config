@@ -17,10 +17,12 @@
 
       #### ENVIRONMENT VARIABLES ####
       env = [
-        "WLR_DRM_NO_ATOMIC,1"
-        "LIBVA_DRIVER_NAME,nvidia"
-        "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-        "__GL_VRR_ALLOWED,1"
+        "GTK_THEME,Adwaita:dark"
+        "QT_QPA_PLATFORMTHEME,qt5ct"
+        
+        "ELECTRON_ENABLE_WAYLAND,1"
+        "ELECTRON_OZONE_PLATFORM_HINT,auto"
+        "NIXOS_OZONE_WL,1"
       ];
 
       #### LOOK & FEEL ####

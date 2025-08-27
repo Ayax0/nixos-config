@@ -34,10 +34,11 @@
 
   # Electron/Chromium-Apps standardmäßig Wayland nutzen
   environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
+    LIBVA_DRIVER_NAME = "nvidia";
     GBM_BACKEND = "nvidia-drm";
-    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+
+    # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    # __GL_VRR_ALLOWED = "1";
   };
 
   # Client-Tools in PATH:
