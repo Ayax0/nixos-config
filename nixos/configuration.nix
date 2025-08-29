@@ -75,6 +75,8 @@
     libsecret
     seahorse
     
+    gnumake
+    python314
     nodejs_22
     pnpm
 
