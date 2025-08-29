@@ -34,6 +34,8 @@
           self.nixosModules.hyprland
           self.nixosModules.docker
           self.nixosModules.keeweb
+          self.nixosModules.gaming
+          self.nixosModules.print
           ./nixos/configuration.nix
         ];
       };

@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 {
   programs.hyprland.enable = true;
-  
+  programs.hyprland.xwayland.enable = true;
+
   services.xserver.videoDrivers = [ "nvidia" ];
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
@@ -36,9 +37,6 @@
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "nvidia";
     GBM_BACKEND = "nvidia-drm";
-
-    # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    # __GL_VRR_ALLOWED = "1";
   };
 
   # Client-Tools in PATH:
