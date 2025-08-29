@@ -29,9 +29,6 @@
     extraConfig = {
       init.defaultBranch = "main";
       pull.rebase = true;
-      push.autoSetupRemote = true;
-      core.pager = "delta";
-      delta = { navigate = true; line-numbers = true; };
     };
   };
 
