@@ -3,18 +3,22 @@
   programs.hyprland.enable = true;
   programs.hyprland.xwayland.enable = true;
 
-  services.xserver.videoDrivers = [ "nvidia" ];
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
 
-  hardware.graphics.enable = true;
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+  # hardware.graphics.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
   
   hardware.nvidia = {
     open = false;
+    nvidiaSettings = true;
     modesetting.enable = true;
     powerManagement.enable = false;
-    nvidiaSettings = true;
-
     package = config.boot.kernelPackages.nvidiaPackages.production;
   };
 
