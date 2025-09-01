@@ -87,6 +87,7 @@
     neovim
     postman
     teams-for-linux
+    figma-linux
   ];
 
   # Enable the OpenSSH daemon.
