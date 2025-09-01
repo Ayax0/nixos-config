@@ -2,7 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs, system, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  system,
+  ...
+}:
 
 {
   imports = [
@@ -19,14 +26,17 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  networking.hostName = "nixos";  
+  networking.hostName = "nixos";
 
   # Enable Flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Set your time zone.
   time.timeZone = "Europe/Zurich";
-  
+
   # Set locale
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -45,7 +55,7 @@
       LC_ADDRESS = "de_CH.UTF-8";
       LC_TELEPHONE = "de_CH.UTF-8";
       LC_IDENTIFICATION = "de_CH.UTF-8";
-      
+
       LC_COLLATE = "en_US.UTF-8";
     };
   };
@@ -54,8 +64,11 @@
   users.users.ayax0 = {
     isNormalUser = true;
     description = "Ayax0";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    packages = with pkgs; [ ];
   };
 
   # Allow unfree packages
@@ -64,7 +77,7 @@
   # Keyring
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.login.enableGnomeKeyring = true;
-  
+
   # Packages
   environment.systemPackages = with pkgs; [
     wget
@@ -74,11 +87,12 @@
     ripgrep
     libsecret
     seahorse
-    
+
     gnumake
     python314
     nodejs_22
     pnpm
+    nixfmt-rfc-style
 
     google-chrome
     inputs.zen-browser.packages."${system}".default

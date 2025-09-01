@@ -6,12 +6,7 @@
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
 
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-  # hardware.graphics.enable = true;
+  hardware.graphics.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
   
   hardware.nvidia = {
@@ -41,6 +36,7 @@
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "nvidia";
     GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
 
   # Client-Tools in PATH:
