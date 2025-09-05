@@ -8,7 +8,7 @@
 
   hardware.graphics.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
-  
+
   hardware.nvidia = {
     open = false;
     nvidiaSettings = true;
@@ -22,9 +22,18 @@
     wlr.enable = false;
     extraPortals = with pkgs; [
       xdg-desktop-portal-hyprland
-      xdg-desktop-portal-gtk 
+      xdg-desktop-portal-gtk
     ];
   };
+
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    pulse.enable = true;
+    jack.enable = true;
+  };
+
+  security.rtkit.enable = true;
 
   environment.variables = {
     WLR_NO_HARDWARE_CURSORS = "1";
@@ -47,6 +56,9 @@
 
     xdg-desktop-portal-hyprland
     xdg-desktop-portal-gtk
+    xdg-desktop-portal
+    wireplumber
+    pipewire
   ];
 
   fonts.packages = with pkgs; [

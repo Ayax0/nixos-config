@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   ##### Hyprland managed by Home‑Manager #####
   wayland.windowManager.hyprland = {
@@ -19,7 +24,7 @@
       env = [
         "GTK_THEME,Adwaita:dark"
         "QT_QPA_PLATFORMTHEME,qt5ct"
-        
+
         "ELECTRON_ENABLE_WAYLAND,1"
         "ELECTRON_OZONE_PLATFORM_HINT,auto"
         "NIXOS_OZONE_WL,1"
@@ -113,7 +118,10 @@
       gestures.workspace_swipe = false;
 
       device = [
-        { name = "epic-mouse-v1"; sensitivity = -0.5; }
+        {
+          name = "epic-mouse-v1";
+          sensitivity = -0.5;
+        }
       ];
 
       #### KEYBINDINGS ####
@@ -176,6 +184,12 @@
       windowrule = [
         "suppressevent maximize, class:.*"
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+        "opacity 0.0 override, class:^(xwaylandvideobridge)$"
+        "noanim, class:^(xwaylandvideobridge)$"
+        "noinitialfocus, class:^(xwaylandvideobridge)$"
+        "maxsize 1 1, class:^(xwaylandvideobridge)$"
+        "noblur, class:^(xwaylandvideobridge)$"
+        "nofocus, class:^(xwaylandvideobridge)$"
       ];
     };
   };
