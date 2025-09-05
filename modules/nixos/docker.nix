@@ -3,6 +3,7 @@
   virtualisation.docker = {
     enable = true;
     enableOnBoot = true;
+    extraOptions = "--insecure-registry registry.nlu-office.ch";
     # optional: daemon.settings = { "iptables" = false; };
   };
 
@@ -10,5 +11,8 @@
   users.users.ayax0.extraGroups = [ "docker" ];
 
   # Client-Tools in PATH:
-  environment.systemPackages = with pkgs; [ docker docker-compose ];
+  environment.systemPackages = with pkgs; [
+    docker
+    docker-compose
+  ];
 }
