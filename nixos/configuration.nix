@@ -102,6 +102,7 @@
     postman
     teams-for-linux
     figma-linux
+    discord
   ];
 
   # Enable the OpenSSH daemon.
