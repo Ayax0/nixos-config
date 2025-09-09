@@ -3,44 +3,159 @@
   programs.waybar = {
     enable = true;
 
-    settings = [{
-      layer = "top";
-      position = "top";
-      height = 28;
-      modules-left  = [ "sway/workspaces" "sway/mode" ];
-      modules-center = [ "clock" ];
-      modules-right = [ "pulseaudio" "battery" "network" "tray" ];
+    settings = [
+      {
+        layer = "top";
+        position = "top";
 
-      "clock" = { format = "{:%a %d.%m. %H:%M}"; tooltip = false; };
-      "battery" = {
-        format = "{capacity}% ";
-        format-alt = "{time} remaining";
-        states = { warning = 25; critical = 10; };
-      };
-      "network" = {
-        format-wifi = "  {essid} {signalStrength}%";
-        format-ethernet = " {ifname}";
-        format-disconnected = "";
-      };
-      "pulseaudio" = {
-        format = "{volume}% {icon}";
-        format-muted = "muted ";
-        "format-icons" = { default = [ "" "" ]; };
-        on-click = "pamixer -t";
-        on-scroll-up = "pamixer -i 2";
-        on-scroll-down = "pamixer -d 2";
-      };
-      "tray" = { spacing = 8; };
-    }];
+        modules-left = [ ];
+        modules-center = [ "custom/music" ];
+        modules-right = [
+          "pulseaudio"
+          "clock"
+          "tray"
+          "custom/lock"
+          "custom/power"
+        ];
+
+        "tray" = {
+          icon-size = 20;
+          spacing = 10;
+        };
+
+        "custom/music" = {
+          format = "  {}";
+          escape = true;
+          interval = 5;
+          tooltip = false;
+          exec = "playerctl metadata --format='{{ title }}'";
+          on-click = "playerctl play-pause";
+          max-length = 50;
+        };
+
+        "clock" = {
+          timezone = "Europe/Zurich"; # Angepasst für die Schweiz
+          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+          format-alt = " {:%d/%m/%Y}";
+          format = " {:%H:%M}";
+        };
+
+        "pulseaudio" = {
+          # scroll-step = 1; # %, can be a float
+          format = "{icon} {volume}%";
+          format-muted = "";
+          format-icons = {
+            default = [
+              ""
+              ""
+              " "
+            ];
+          };
+          on-click = "pavucontrol";
+        };
+
+        "custom/lock" = {
+          tooltip = false;
+          on-click = "sh -c '(sleep 0.5s; hyprlock)' & disown"; # Angepasst für Hyprland
+          format = "";
+        };
+
+        "custom/power" = {
+          tooltip = false;
+          on-click = "wlogout &";
+          format = "⏻";
+        };
+      }
+    ];
 
     # CSS-Styling
     style = ''
-      * { font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free"; font-size: 12px; }
-      window#waybar { background: rgba(30,30,34,0.85); color: #e6e6e6; }
-      #clock, #battery, #network, #pulseaudio, #tray { padding: 0 10px; }
-      #battery.warning { color: #ffcc00; }
-      #battery.critical { color: #ff5555; }
-      tooltip { background: #1f2430; border: 1px solid #3b4252; }
+      @define-color base   #1e1e2e;
+      @define-color mantle #181825;
+      @define-color crust  #11111b;
+
+      @define-color text     #cdd6f4;
+      @define-color subtext0 #a6adc8;
+      @define-color subtext1 #bac2de;
+
+      @define-color surface0 #313244;
+      @define-color surface1 #45475a;
+      @define-color surface2 #585b70;
+
+      @define-color overlay0 #6c7086;
+      @define-color overlay1 #7f849c;
+      @define-color overlay2 #9399b2;
+
+      @define-color blue      #89b4fa;
+      @define-color lavender  #b4befe;
+      @define-color sapphire  #74c7ec;
+      @define-color sky       #89dceb;
+      @define-color teal      #94e2d5;
+      @define-color green     #a6e3a1;
+      @define-color yellow    #f9e2af;
+      @define-color peach     #fab387;
+      @define-color maroon    #eba0ac;
+      @define-color red       #f38ba8;
+      @define-color mauve     #cba6f7;
+      @define-color pink      #f5c2e7;
+      @define-color flamingo  #f2cdcd;
+      @define-color rosewater #f5e0dc;
+
+      * { 
+        font-family: "JetBrainsMono Nerd Font"; 
+        font-size: 16px;
+      }
+
+      #waybar {
+        background: transparent;
+        color: @text;
+        border: none;
+      }
+
+      #custom-music,
+      #tray,
+      #backlight,
+      #clock,
+      #battery,
+      #pulseaudio,
+      #custom-lock,
+      #custom-power {
+        background-color: @surface0;
+        padding: 5px 1rem;
+        margin-top: 5px;
+      }
+
+      #clock {
+        color: @blue;
+        border-radius: 0px 1rem 1rem 0px;
+        margin-right: 0.5rem;
+      }
+
+      #pulseaudio {
+        color: @maroon;
+        border-radius: 1rem 0px 0px 1rem;
+      }
+
+      #custom-music {
+        color: @mauve;
+        border-radius: 1rem;
+      }
+
+      #custom-lock {
+          border-radius: 1rem 0px 0px 1rem;
+          color: @lavender;
+      }
+
+      #custom-power {
+          border-radius: 0px 1rem 1rem 0px;
+          color: @red;
+          margin-right: 0.5rem;
+      }
+
+      #tray {
+        margin-right: 0.5rem;
+        border-radius: 1rem;
+      }
     '';
   };
 
@@ -54,10 +169,17 @@
       ExecStart = "${pkgs.waybar}/bin/waybar";
       Restart = "on-failure";
       RestartSec = 3;
-      Environment = "XDG_CURRENT_DESKTOP=sway";
+      Environment = "XDG_CURRENT_DESKTOP=Hyprland";
     };
-    Install = { WantedBy = [ "graphical-session.target" ]; };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
   };
 
-  home.packages = with pkgs; [ waybar ];
+  home.packages = with pkgs; [
+    waybar
+    playerctl
+    pavucontrol
+    wlogout
+  ];
 }

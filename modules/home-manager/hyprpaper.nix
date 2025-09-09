@@ -3,8 +3,8 @@
   services.hyprpaper = {
     enable = true;
     settings = {
-      preload = [ "~/Downloads/Mountain.png" ];
-      wallpaper = [ ", ~/Downloads/Mountain.png" ];
+      preload = [ "~/Downloads/evening-sky.png" ];
+      wallpaper = [ ", ~/Downloads/evening-sky.png" ];
     };
   };
 
