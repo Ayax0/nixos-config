@@ -8,7 +8,7 @@
         layer = "top";
         position = "top";
 
-        modules-left = [ ];
+        modules-left = [ "network" ];
         modules-center = [ "custom/music" ];
         modules-right = [
           "pulseaudio"
@@ -17,6 +17,13 @@
           "custom/lock"
           "custom/power"
         ];
+
+        "network" = {
+          interface = "enp0s31f6";
+          format = "{ipaddr}";
+          format-disconnected = " Disconnected";
+          tooltip = false;
+        };
 
         "tray" = {
           icon-size = 20;
@@ -112,6 +119,7 @@
         border: none;
       }
 
+      #network,
       #custom-music,
       #tray,
       #backlight,
@@ -125,15 +133,23 @@
         margin-top: 5px;
       }
 
+      #network {
+        color: @blue;
+        border-radius: 1rem;
+        margin-left: 0.5rem;
+      }
+
       #clock {
         color: @blue;
         border-radius: 0px 1rem 1rem 0px;
         margin-right: 0.5rem;
+        padding-left: 0.5rem;
       }
 
       #pulseaudio {
         color: @maroon;
         border-radius: 1rem 0px 0px 1rem;
+        padding-right: 0.5rem;
       }
 
       #custom-music {
