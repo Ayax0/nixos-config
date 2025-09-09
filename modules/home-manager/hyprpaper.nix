@@ -3,8 +3,8 @@
   services.hyprpaper = {
     enable = true;
     settings = {
-      preload = [ "~/Downloads/evening-sky.png" ];
-      wallpaper = [ ", ~/Downloads/evening-sky.png" ];
+      preload = [ "~/nixos-config/assets/evening-sky.png" ];
+      wallpaper = [ ", ~/nixos-config/assets/evening-sky.png" ];
     };
   };
 
