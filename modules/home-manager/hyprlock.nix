@@ -12,20 +12,29 @@
 
       background = {
         monitor = "";
-        # path = "/path/zu/deinem/wallpaper.jpg";
+        path = "~/nixos-config/assets/evening-sky.png";
         blur_passes = 2;
         blur_size = 8;
       };
 
       input-field = {
+        monitor = "DP-3";
         size = "300, 50";
         outline_thickness = 2;
         dots_center = true;
+        check_color = "rgba(203, 166, 247, 0.8)";
+        outer_color = "rgba(255, 255, 255, 0)";
+        inner_color = "rgba(255, 255, 255, 0.1)";
+        font_color = "rgb(200, 200, 200)";
       };
 
       label = [
-        { text = "$TIME"; font_size = 36; position = "0, -150"; }
-        { text = "Gesperrt – tippe dein Passwort"; position = "0, 140"; }
+        {
+          monitor = "DP-3";
+          text = "$TIME";
+          font_size = 80;
+          position = "0, 150";
+        }
       ];
     };
   };
