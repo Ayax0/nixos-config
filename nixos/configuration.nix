@@ -103,6 +103,7 @@
     teams-for-linux
     figma-linux
     discord
+    mqtt-explorer
   ];
 
   # Enable the OpenSSH daemon.
