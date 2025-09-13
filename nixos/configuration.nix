@@ -28,6 +28,9 @@
   networking.networkmanager.enable = true;
   networking.hostName = "nixos";
 
+  # Enable disk management
+  services.udisks2.enable = true;
+
   # Enable Flakes
   nix.settings.experimental-features = [
     "nix-command"
@@ -104,6 +107,8 @@
     figma-linux
     discord
     mqtt-explorer
+    rpi-imager
+    gparted
   ];
 
   # Enable the OpenSSH daemon.
