@@ -90,6 +90,8 @@
     ripgrep
     libsecret
     seahorse
+    sqlite
+    insomnia
 
     gnumake
     python314
