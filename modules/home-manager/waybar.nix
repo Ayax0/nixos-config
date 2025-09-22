@@ -23,7 +23,7 @@
 
         "network" = {
           interface = "enp0s31f6";
-          format = "󰩠 {ipaddr}";
+          format = " {ipaddr}";
           format-disconnected = " Disconnected";
           tooltip = false;
         };
@@ -33,7 +33,7 @@
           return-type = "json";
           interval = 60;
           tooltip = true;
-          format = "󰹑 {}";
+          format = " {}";
         };
 
         "tray" = {
