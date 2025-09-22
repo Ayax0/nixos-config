@@ -8,7 +8,10 @@
         layer = "top";
         position = "top";
 
-        modules-left = [ "network" ];
+        modules-left = [
+          "network"
+          "custom/monitor"
+        ];
         modules-center = [ "custom/music" ];
         modules-right = [
           "pulseaudio"
@@ -20,9 +23,17 @@
 
         "network" = {
           interface = "enp0s31f6";
-          format = "{ipaddr}";
+          format = "󰩠 {ipaddr}";
           format-disconnected = " Disconnected";
           tooltip = false;
+        };
+
+        "custom/monitor" = {
+          exec = "~/.config/waybar/scripts/monitor_id.sh";
+          return-type = "json";
+          interval = 60;
+          tooltip = true;
+          format = "󰹑 {}";
         };
 
         "tray" = {
@@ -64,7 +75,7 @@
         "custom/lock" = {
           tooltip = false;
           on-click = "sh -c '(sleep 0.5s; hyprlock)' & disown"; # Angepasst für Hyprland
-          format = "";
+          format = "󰌾";
         };
 
         "custom/power" = {
@@ -120,6 +131,7 @@
       }
 
       #network,
+      #custom-monitor,
       #custom-music,
       #tray,
       #backlight,
@@ -135,8 +147,14 @@
 
       #network {
         color: @blue;
-        border-radius: 1rem;
+        border-radius: 1rem 0px 0px 1rem;
         margin-left: 0.5rem;
+      }
+
+      #custom-monitor {
+        color: @blue;
+        border-radius: 0px 1rem 1rem 0px;
+        margin-right: 0.5rem;
       }
 
       #clock {
@@ -175,6 +193,33 @@
     '';
   };
 
+  home.file.".config/waybar/scripts/monitor_id.sh" = {
+    executable = true;
+    text = ''
+      #!/usr/bin/env bash
+      set -euo pipefail
+
+      # Waybar setzt das pro-Output:
+      out="${"\${WAYBAR_OUTPUT_NAME:-}"}"
+
+      # Fallback: nimm den ersten Monitor, falls Var fehlt (sollte selten passieren)
+      if [[ -z "$out" ]]; then
+        out="$(hyprctl monitors -j | jq -r '.[0].name')"
+      fi
+
+      # ID zum Namen finden
+      id="$(hyprctl monitors -j | jq --arg out "$out" -r '.[] | select(.name==$out) | .id')"
+      if [[ -z "$id" || "$id" == "null" ]]; then
+        id=0
+      fi
+
+      # 1-basiert anzeigen
+      num=$((id + 1))
+
+      printf '{"text":"%d","tooltip":"Monitor %s (ID %s)"}\n' "$num" "$out" "$id"
+    '';
+  };
+
   systemd.user.services.waybar = {
     Unit = {
       Description = "Waybar status bar";
@@ -197,5 +242,6 @@
     playerctl
     pavucontrol
     wlogout
+    jq
   ];
 }

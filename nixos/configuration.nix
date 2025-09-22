@@ -88,10 +88,15 @@
     git
     unzip
     ripgrep
+    ffmpeg
+    vivaldi-ffmpeg-codecs
     libsecret
     seahorse
     sqlite
+    gparted
     insomnia
+    jetbrains.datagrip
+    vlc
 
     gnumake
     python314
@@ -110,7 +115,8 @@
     discord
     mqtt-explorer
     rpi-imager
-    gparted
+    davinci-resolve
+    gimp3
   ];
 
   # Enable the OpenSSH daemon.
