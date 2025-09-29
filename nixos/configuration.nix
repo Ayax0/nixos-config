@@ -87,6 +87,7 @@
     gcc
     git
     unzip
+    htop
     ripgrep
     ffmpeg
     vivaldi-ffmpeg-codecs
@@ -96,6 +97,8 @@
     gparted
     insomnia
     jetbrains.datagrip
+    jetbrains.idea-community
+    rustdesk-flutter
     vlc
 
     gnumake

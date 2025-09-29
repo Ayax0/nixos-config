@@ -12,13 +12,20 @@
 
     settings = {
       monitor = [
-        "HDMI-A-2,1920x1080@60,0x0,1"
+        "HDMI-A-1,1920x1080@60,0x0,1"
         "HDMI-A-3,1920x1080@60,1920x0,1"
         "HDMI-A-4,1920x1080@60,3840x0,1"
-        "DP-1,1680x1050@60,240x1080,1"
+        "DP-2,1680x1050@60,240x1080,1"
         "DP-3,1920x1080@60,1920x1080,1"
         "DP-4,1920x1080@60,3840x1080,1"
       ];
+
+      # workspace = [
+      #   "1, monitor:DP-3, default:true, persistent:true"
+      #   "2, monitor:DP-3"
+      #   "3, monitor:HDMI-A-3, default:true, persistent:true"
+      #   "4, monitor:HDMI-A-3"
+      # ];
 
       #### ENVIRONMENT VARIABLES ####
       env = [
@@ -149,6 +156,12 @@
         "$mainMod SHIFT, right, movewindow, r"
         "$mainMod SHIFT, up, movewindow, u"
         "$mainMod SHIFT, down, movewindow, d"
+
+        # Switch workspaces
+        # "$mainMod, 1, workspace, 1"
+        # "$mainMod, 2, workspace, 2"
+        # "$mainMod, 3, workspace, 3"
+        # "$mainMod, 4, workspace, 4"
       ];
 
       bindm = [
