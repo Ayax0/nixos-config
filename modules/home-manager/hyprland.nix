@@ -157,6 +157,11 @@
         "$mainMod SHIFT, up, movewindow, u"
         "$mainMod SHIFT, down, movewindow, d"
 
+        "$mainMod CTRL, left, movewindow, mon:l"
+        "$mainMod CTRL, right, movewindow, mon:r"
+        "$mainMod CTRL, up, movewindow, mon:u"
+        "$mainMod CTRL, down, movewindow, mon:d"
+
         # Switch workspaces
         # "$mainMod, 1, workspace, 1"
         # "$mainMod, 2, workspace, 2"
@@ -170,6 +175,22 @@
       ];
 
       #### WINDOWS & WORKSPACES ####
+      windowrulev2 = [
+        # Picture-in-Picture für Browser (YouTube, etc.) - Verbessert
+        "float, title:^(Picture-in-Picture)$"
+        "size 400 225, title:^(Picture-in-Picture)$"
+        "move 100%-420 100%-245, title:^(Picture-in-Picture)$"
+        "opacity 0.95, title:^(Picture-in-Picture)$"
+        "keepaspectratio, title:^(Picture-in-Picture)$"
+
+        # Zen Browser PiP spezifisch - Ohne pin und special workspace
+        "float, class:^(zen-beta)$, title:^(Picture-in-Picture)$"
+        "size 400 225, class:^(zen-beta)$, title:^(Picture-in-Picture)$"
+        "move 100%-420 100%-245, class:^(zen-beta)$, title:^(Picture-in-Picture)$"
+        "opacity 0.95, class:^(zen-beta)$, title:^(Picture-in-Picture)$"
+        "keepaspectratio, class:^(zen-beta)$, title:^(Picture-in-Picture)$"
+      ];
+
       windowrule = [
         "suppressevent maximize, class:.*"
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
