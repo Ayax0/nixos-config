@@ -42,6 +42,7 @@
             self.nixosModules.docker
             self.nixosModules.keeweb
             self.nixosModules.gaming
+            self.nixosModules.httpd
             self.nixosModules.polkit
             self.nixosModules.print
             ./nixos/configuration.nix

@@ -100,6 +100,7 @@
     jetbrains.idea-community
     rustdesk-flutter
     vlc
+    filezilla
 
     gnumake
     python314
