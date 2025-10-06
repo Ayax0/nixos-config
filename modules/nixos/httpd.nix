@@ -15,6 +15,7 @@
 
   services.httpd.virtualHosts."mpng.signsuite.local" = {
     documentRoot = "/var/www/mpng.signsuite.local";
+    serverAliases = [ "*" ];
   };
 
   # hacky way to create our directory structure and index page... don't actually use this
