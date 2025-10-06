@@ -10,7 +10,9 @@
   system,
   ...
 }:
-
+let
+  pkgs-unstable = import <nixos-unstable> { config = config.nixpkgs.config; };
+in
 {
   imports = [
     ./hardware-configuration.nix

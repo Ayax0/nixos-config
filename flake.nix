@@ -35,7 +35,14 @@
 
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit system inputs outputs; };
+          specialArgs = {
+            inherit
+              system
+              inputs
+              outputs
+              unstable
+              ;
+          };
 
           modules = [
             self.nixosModules.hyprland
@@ -45,6 +52,7 @@
             self.nixosModules.httpd
             self.nixosModules.polkit
             self.nixosModules.print
+            self.nixosModules.vips
             ./nixos/configuration.nix
           ];
         };
