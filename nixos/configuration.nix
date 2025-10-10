@@ -103,6 +103,7 @@ in
     rustdesk-flutter
     vlc
     filezilla
+    azure-cli
 
     gnumake
     python314
