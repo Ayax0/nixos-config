@@ -104,6 +104,7 @@ in
     vlc
     filezilla
     azure-cli
+    # obs-studio
 
     gnumake
     python314

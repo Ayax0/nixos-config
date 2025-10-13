@@ -50,6 +50,7 @@
             self.nixosModules.keeweb
             self.nixosModules.gaming
             self.nixosModules.httpd
+            self.nixosModules.obs
             self.nixosModules.polkit
             self.nixosModules.print
             self.nixosModules.vips
