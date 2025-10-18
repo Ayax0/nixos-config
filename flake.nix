@@ -54,6 +54,7 @@
             self.nixosModules.polkit
             self.nixosModules.print
             self.nixosModules.vips
+            self.nixosModules.vpn
             ./nixos/configuration.nix
           ];
         };

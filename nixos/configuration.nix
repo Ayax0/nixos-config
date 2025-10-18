@@ -104,6 +104,7 @@ in
     vlc
     filezilla
     azure-cli
+    teleport_18
     # obs-studio
 
     gnumake

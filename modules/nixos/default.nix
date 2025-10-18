@@ -8,4 +8,5 @@
   polkit = import ./polkit.nix;
   print = import ./print.nix;
   vips = import ./vips.nix;
+  vpn = import ./vpn.nix;
 }
