@@ -105,6 +105,7 @@ in
     filezilla
     azure-cli
     teleport_18
+    mongodb-compass
     # obs-studio
 
     gnumake
