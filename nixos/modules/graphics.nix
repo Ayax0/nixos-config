@@ -1,21 +1,9 @@
-{ config, pkgs, lib, ... }:
+{ ... }:
 
 {
-  boot.kernelParams = [
-    "nvidia.NVreg_DeviceFileUID=0"
-    "nvidia.NVreg_DeviceFileGID=0"
-    "nvidia.NVreg_DeviceFileMode=0666"
-    "nvidia.NVreg_UsePageAttributeTable=1"
-    "nvidia.NVreg_EnableMSI=1"
-    "nvidia-drm.modeset=1"
-    "video=efifb:off"
-    "boot_vga=0000:17:00.0"
-  ];
+  boot.plymouth.enable = true;
 
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
+  hardware.graphics.enable = true;
 
   hardware.nvidia = {
     open = false;
@@ -23,13 +11,23 @@
     modesetting.enable = true;
     powerManagement.enable = false;
     powerManagement.finegrained = false;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
+  boot.kernelParams = [ "nvidia-drm.modeset=1" ];
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  environment.systemPackages = with pkgs; [
-    egl-wayland
-    glxinfo
-  ];
+  services.udev.extraRules = ''
+    KERNEL=="card*", KERNELS=="0000:65:00.0", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", SYMLINK+="dri/nvidia-main"
+    KERNEL=="card*", KERNELS=="0000:17:00.0", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", SYMLINK+="dri/nvidia-secondary"
+  '';
+
+  environment.variables = {
+    GBM_BACKEND = "nvidia-drm";
+    LIBVA_DRIVER_NAME = "nvidia";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+
+    WLR_NO_HARDWARE_CURSORS = "1";
+    WLR_DRM_DEVICES = "/dev/dri/nvidia-main:/dev/dri/nvidia-secondary";
+    AQ_DRM_DEVICES = "/dev/dri/nvidia-main:/dev/dri/nvidia-secondary";
+  };
 }

@@ -10,11 +10,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    swww.url = "github:LGFae/swww";    
-
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland.url = "github:hyprwm/Hyprland";
+    
+    split-monitor-workspaces = {
+      url = "github:Duckonaut/split-monitor-workspaces";
+      inputs.hyprland.follows = "hyprland";
     };
   };
 
@@ -27,11 +32,7 @@
       nixos = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs system; };
         modules = [
-          ./hosts/default/configuration.nix
-          ./nixos/modules/audio.nix
-          ./nixos/modules/graphics.nix
-          ./nixos/modules/language.nix
-          ./nixos/modules/login.nix
+          ./nixos/configuration.nix
         ];
       };
     };

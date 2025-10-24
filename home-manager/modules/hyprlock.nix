@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   programs.hyprlock = {
@@ -36,6 +36,4 @@
       ];
     };
   };
-
-  home.packages = with pkgs; [ hyprlock ];
 }

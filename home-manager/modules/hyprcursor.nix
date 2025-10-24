@@ -1,13 +1,11 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   home.pointerCursor = {
-    name = "Catppuccin-Mocha-Mauve";
-    package = pkgs.catppuccin-cursors.mochaMauve;
-    size = 24;
-
     gtk.enable = true;
     x11.enable = true;
+    
+    package = pkgs.catppuccin-cursors.mochaMauve;
+    name = "Catppuccin-Mocha-Mauve";
+    size = 24;
   };
-
-  home.packages = with pkgs; [ hyprcursor catppuccin-cursors.mochaMauve ];
 }

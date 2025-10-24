@@ -3,6 +3,14 @@
 {
   imports = [
     ./hardware-configuration.nix
+    
+    ./modules/audio.nix
+    ./modules/docker.nix
+    ./modules/graphics.nix
+    ./modules/hyprland.nix
+    ./modules/language.nix
+    ./modules/login.nix
+    ./modules/network.nix
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -12,15 +20,17 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "ntfs" ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
   networking.hostName = "nixos";
-  networking.networkmanager.enable = true;
 
   users.users.ayax0 = {
     isNormalUser = true;
     description = "Simon Gander";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ 
+      "networkmanager"
+      "seat" 
+      "wheel"
+      "docker"
+    ];
   };
 
   time.timeZone = "Europe/Zurich";
@@ -29,28 +39,25 @@
     home-manager
     
     ffmpeg
-    keeweb
     vscode
     google-chrome
     inputs.zen-browser.packages."${system}".default
 
     nodejs_22
     pnpm
+
+    bruno
   ];
 
-  programs.hyprland.enable = true;
-  programs.hyprland.xwayland.enable = true;
+  programs.dconf.enable = true;  
 
   services.dbus.enable = true;
-  services.openssh.enable = true;
   services.udisks2.enable = true;
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-
-  services.udev.extraRules = ''
-    KERNEL=="card*", KERNELS=="0000:65:00.0", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", SYMLINK+="dri/nvidia-main"
-    KERNEL=="card*", KERNELS=="0000:17:00.0", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", SYMLINK+="dri/nvidia-secondary"
-  '';
+  
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
 
   system.stateVersion = "25.05";
 

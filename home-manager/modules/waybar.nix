@@ -8,58 +8,29 @@
         layer = "top";
         position = "top";
 
-        modules-left = [
-          "network"
-          "custom/monitor"
-        ];
-        modules-center = [ "custom/music" ];
-        modules-right = [
-          "pulseaudio"
-          "clock"
-          "tray"
-          "custom/lock"
-          "custom/power"
-        ];
-
-        "network" = {
-          interface = "enp0s31f6";
-          format = " {ipaddr}";
-          format-disconnected = " Disconnected";
-          tooltip = false;
-        };
+        modules-left = [ "custom/monitor" "hyprland/workspaces" ];
+        modules-center = [ ];
+        modules-right = [ "pulseaudio" "clock" "custom/power" ];
 
         "custom/monitor" = {
           exec = "~/.config/waybar/scripts/monitor_id.sh";
           return-type = "json";
           interval = 60;
           tooltip = true;
-          format = " {}";
+          format = "   {}";
         };
 
-        "tray" = {
-          icon-size = 20;
-          spacing = 10;
-        };
-
-        "custom/music" = {
-          format = "  {}";
-          escape = true;
-          interval = 5;
-          tooltip = false;
-          exec = "playerctl metadata --format='{{ title }}'";
-          on-click = "playerctl play-pause";
-          max-length = 50;
-        };
-
-        "clock" = {
-          timezone = "Europe/Zurich"; # Angepasst für die Schweiz
-          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-          format-alt = " {:%d/%m/%Y}";
-          format = " {:%H:%M}";
+        "hyprland/workspaces" = {
+          all-outputs = false;
+          "on-click" = "activate";
+          "format" = "{icon}";
+          "format-icons" = {
+            "active" = "";
+            "default" = "";
+          };
         };
 
         "pulseaudio" = {
-          # scroll-step = 1; # %, can be a float
           format = "{icon} {volume}%";
           format-muted = "";
           format-icons = {
@@ -72,10 +43,11 @@
           on-click = "pavucontrol";
         };
 
-        "custom/lock" = {
+        "clock" = {
+          timezone = "Europe/Zurich";
           tooltip = false;
-          on-click = "sh -c '(sleep 0.5s; hyprlock)' & disown"; # Angepasst für Hyprland
-          format = "󰌾";
+          format-alt = "{:%H:%M}";
+          format = "{:%H:%M - %d.%m.%Y}";
         };
 
         "custom/power" = {
@@ -88,107 +60,74 @@
 
     # CSS-Styling
     style = ''
-      @define-color base   #1e1e2e;
-      @define-color mantle #181825;
-      @define-color crust  #11111b;
+      @define-color primary    #ce53e0;
+      @define-color secondary  #a6adc8;
 
-      @define-color text     #cdd6f4;
-      @define-color subtext0 #a6adc8;
-      @define-color subtext1 #bac2de;
+      @define-color background rgba(100, 100, 100, 0.25);
+      @define-color foreground rgba(255, 255, 255, 0.8);
 
-      @define-color surface0 #313244;
-      @define-color surface1 #45475a;
-      @define-color surface2 #585b70;
-
-      @define-color overlay0 #6c7086;
-      @define-color overlay1 #7f849c;
-      @define-color overlay2 #9399b2;
-
-      @define-color blue      #89b4fa;
-      @define-color lavender  #b4befe;
-      @define-color sapphire  #74c7ec;
-      @define-color sky       #89dceb;
-      @define-color teal      #94e2d5;
-      @define-color green     #a6e3a1;
-      @define-color yellow    #f9e2af;
-      @define-color peach     #fab387;
-      @define-color maroon    #eba0ac;
-      @define-color red       #f38ba8;
-      @define-color mauve     #cba6f7;
-      @define-color pink      #f5c2e7;
-      @define-color flamingo  #f2cdcd;
-      @define-color rosewater #f5e0dc;
+      @define-color card       rgba(255, 255, 255, 0.1);
+      @define-color border     rgba(166, 173, 200, 0.2);
 
       * { 
-        font-family: "JetBrainsMono Nerd Font"; 
-        font-size: 16px;
+        font-family: "JetBrainsMono Nerd Font";
       }
 
-      #waybar {
+      window#waybar {
         background: transparent;
-        color: @text;
-        border: none;
+        color: @foreground;
       }
 
-      #network,
-      #custom-monitor,
-      #custom-music,
-      #tray,
-      #backlight,
-      #clock,
-      #battery,
-      #pulseaudio,
-      #custom-lock,
-      #custom-power {
-        background-color: @surface0;
-        padding: 5px 1rem;
-        margin-top: 5px;
-      }
-
-      #network {
-        color: @blue;
-        border-radius: 8px 0px 0px 8px;
-        margin-left: 0.5rem;
+      window#waybar>box {
+        padding: 5px 8px 0px 8px;
       }
 
       #custom-monitor {
-        color: @blue;
-        border-radius: 0px 8px 8px 0px;
-        margin-right: 0.5rem;
+        background: @background;
+        border: 2px solid @border;
+        border-radius: 8px;
+        margin-right: 5px;
+        padding: 5px 13px;
       }
 
-      #clock {
-        color: @blue;
-        border-radius: 0px 8px 8px 0px;
-        margin-right: 0.5rem;
-        padding-left: 0.5rem;
+      #workspaces {
+        background: @background;
+        border: 2px solid @border;
+        border-radius: 8px;
+        padding: 5px 2px 5px 2px;
+      }
+
+      #workspaces button.active {
+        color: @primary;
+        transition: color 0.5s ease;
+      }
+
+      #workspaces button:hover {
+        color: @foreground;
+        background: rgba(255, 255, 255, 0.2);
       }
 
       #pulseaudio {
-        color: @maroon;
-        border-radius: 8px 0px 0px 8px;
-        padding-right: 0.5rem;
+        background: @background;
+        border: 2px solid @border;
+        border-radius: 8px;
+        padding: 5px 8px;
+        margin-right: 5px;
       }
 
-      #custom-music {
-        color: @mauve;
-        border-radius: 1rem;
-      }
-
-      #custom-lock {
-          border-radius: 8px 0px 0px 8px;
-          color: @lavender;
+      #clock {
+        background: @background;
+        border: 2px solid @border;
+        border-radius: 8px;
+        padding: 5px 8px;
+        margin-right: 5px;
       }
 
       #custom-power {
-          border-radius: 0px 8px 8px 0px;
-          color: @red;
-          margin-right: 0.5rem;
-      }
-
-      #tray {
-        margin-right: 0.5rem;
+        background: @background;
+        border: 2px solid @border;
         border-radius: 8px;
+        padding: 5px 18px 5px 14px;
       }
     '';
   };
@@ -238,10 +177,8 @@
   };
 
   home.packages = with pkgs; [
-    waybar
-    playerctl
     pavucontrol
     wlogout
-    jq
+    jq 
   ];
 }

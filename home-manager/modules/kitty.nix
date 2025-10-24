@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   programs.kitty = {
@@ -67,8 +67,4 @@
       color15 = "#A6ADC8";
     };
   };
-
-  home.packages = with pkgs; [
-    kitty
-  ];
 }
