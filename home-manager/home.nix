@@ -22,12 +22,13 @@
 
   imports = [
     ./modules/git.nix
+    ./modules/hyprcursor.nix
     ./modules/hyprland.nix
     ./modules/hyprlock.nix
     ./modules/kitty.nix
     ./modules/nautilus.nix
     ./modules/rofi.nix
-    ./modules/mpvpaper.nix
+    # ./modules/mpvpaper.nix
     ./modules/waybar.nix
   ];
 
