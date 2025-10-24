@@ -12,7 +12,7 @@
 
       background = {
         monitor = "";
-        path = "/etc/nixos/assets/evening-sky.png";
+        path = "/etc/nixos/assets/background-blur.png";
       };
 
       input-field = {
@@ -31,7 +31,8 @@
           monitor = "DP-3";
           text = "$TIME";
           font_size = 80;
-          position = "0, 150";
+          font_family = "JetBrains Mono Bold";
+          position = "0, 100";
         }
       ];
     };
