@@ -40,6 +40,7 @@
     
     ffmpeg
     vscode
+    rustdesk
     google-chrome
     inputs.zen-browser.packages."${system}".default
 
@@ -47,6 +48,7 @@
     pnpm
 
     bruno
+    teams-for-linux
   ];
 
   programs.dconf.enable = true;  

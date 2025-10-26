@@ -13,11 +13,15 @@
         modules-right = [ "pulseaudio" "clock" "custom/power" ];
 
         "custom/monitor" = {
-          exec = "~/.config/waybar/scripts/monitor_id.sh";
+          exec = "~/.config/waybar/scripts/monitor.sh";
           return-type = "json";
-          interval = 60;
+          interval = 5;
+          format = "{icon} {text}";
+          format-icons = {
+            "default" = "  ";
+            "sharing" = "🔴  ";
+          };
           tooltip = true;
-          format = "   {}";
         };
 
         "hyprland/workspaces" = {
@@ -90,6 +94,10 @@
         padding: 5px 13px;
       }
 
+      #custom-monitor.sharing {
+        color: red;
+      }
+
       #workspaces {
         background: @background;
         border: 2px solid @border;
@@ -132,7 +140,7 @@
     '';
   };
 
-  home.file.".config/waybar/scripts/monitor_id.sh" = {
+  home.file.".config/waybar/scripts/monitor.sh" = {
     executable = true;
     text = ''
       #!/usr/bin/env bash
@@ -152,10 +160,19 @@
         id=0
       fi
 
-      # 1-basiert anzeigen
-      num=$((id + 1))
+      # Prüfen, ob eine Bildschirmfreigabe aktiv ist
+      if pw-cli dump 2>/dev/null | grep -q 'node.name = "xdpw_screen"'; then
+        class="sharing"
+      else
+        class="default"
+      fi
 
-      printf '{"text":"%d","tooltip":"Monitor %s (ID %s)"}\n' "$num" "$out" "$id"
+      # Waybar-kompatible JSON-Ausgabe
+      jq -n -c \
+        --arg text "$id" \
+        --arg tooltip "$out (ID $id)" \
+        --arg class "$class" \
+        '{text: $text, tooltip: $tooltip, class: $class}'
     '';
   };
 
