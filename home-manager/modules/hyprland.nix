@@ -120,7 +120,7 @@
       ];
 
       windowrulev2 = [
-        "opacity 0.93 0.93,class:^(.*)$"
+        "opacity 0.92 0.92,class:^(.*)$"
       ];
 
       layerrule = [
