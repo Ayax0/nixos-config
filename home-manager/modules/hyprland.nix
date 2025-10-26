@@ -38,9 +38,8 @@
         rounding = 8;
         blur = {
           enabled = true;
-          size = 3;
-          passes = 1;
-          vibrancy = 0.1696;
+          size = 8;
+          passes = 2;
         };
       };
 
@@ -122,6 +121,10 @@
 
       windowrulev2 = [
         "opacity 0.93 0.93,class:^(.*)$"
+      ];
+
+      layerrule = [
+        "blur, logout_dialog"
       ];
 
       env = [

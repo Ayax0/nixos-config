@@ -52,7 +52,7 @@
 
         "custom/power" = {
           tooltip = false;
-          on-click = "wlogout &";
+          on-click = "wlogout -b 4 &";
           format = "⏻";
         };
       }
@@ -178,7 +178,6 @@
 
   home.packages = with pkgs; [
     pavucontrol
-    wlogout
-    jq 
+    jq
   ];
 }

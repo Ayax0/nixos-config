@@ -28,6 +28,7 @@
     ./modules/themes.nix
     ./modules/mpvpaper.nix
     ./modules/waybar.nix
+    ./modules/wlogout.nix
   ];
 
   programs.home-manager.enable = true;
