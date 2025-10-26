@@ -121,6 +121,11 @@
 
       windowrulev2 = [
         "opacity 0.92 0.92,class:^(.*)$"
+
+        "float, title:^(Picture-in-Picture)$"
+        "size 400 225, title:^(Picture-in-Picture)$"
+        "move 100%-420 100%-245, title:^(Picture-in-Picture)$"
+        "keepaspectratio, title:^(Picture-in-Picture)$"
       ];
 
       layerrule = [
