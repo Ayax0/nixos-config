@@ -1,10 +1,10 @@
 {
-  description = "A very basic flake";
+  description = "Nixos Config";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -14,61 +14,37 @@
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hyprland.url = "github:hyprwm/Hyprland";
+    
+    split-monitor-workspaces = {
+      url = "github:Duckonaut/split-monitor-workspaces";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
 
-  outputs =
-    {
-      self,
-      unstable,
-      nixpkgs,
-      home-manager,
-      ...
-    }@inputs:
-    let
-      inherit (self) outputs;
-
-      system = "x86_64-linux";
-    in
-    {
-      nixosModules = import ./modules/nixos;
-      homeManagerModules = import ./modules/home-manager;
-
-      nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit
-              system
-              inputs
-              outputs
-              unstable
-              ;
-          };
-
-          modules = [
-            self.nixosModules.hyprland
-            self.nixosModules.docker
-            self.nixosModules.keeweb
-            self.nixosModules.gaming
-            self.nixosModules.httpd
-            self.nixosModules.obs
-            self.nixosModules.polkit
-            self.nixosModules.print
-            self.nixosModules.vips
-            self.nixosModules.vpn
-            ./nixos/configuration.nix
-          ];
-        };
-      };
-
-      homeConfigurations = {
-        ayax0 = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."${system}";
-          extraSpecialArgs = { inherit system inputs outputs; };
-
-          modules = [
-            ./home-manager/home.nix
-          ];
-        };
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  let
+    system = "x86_64-linux";
+  in
+  {
+    nixosConfigurations = {
+      nixos = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs system; };
+        modules = [
+          ./nixos/configuration.nix
+        ];
       };
     };
+
+    homeConfigurations = {
+      ayax0 = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs { inherit system; };
+        extraSpecialArgs = { inherit inputs system; };
+        modules = [
+          ./home-manager/home.nix
+        ];
+      };
+    };
+  };
 }
