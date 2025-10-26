@@ -5,13 +5,13 @@
     enable = true;
 
     theme = {
-      package = pkgs.nordic;
-      name = "Nordic";
+      package = pkgs.dracula-theme;
+      name = "Dracula";
     };
 
     iconTheme = {
-      package = pkgs.papirus-icon-theme;
-      name = "Papirus-Dark";
+      package = pkgs.tela-icon-theme;
+      name = "Tela-purple-dark";
     };
 
     font = {
@@ -23,9 +23,13 @@
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
-      gtk-theme = "Nordic";
-      icon-theme = "Papirus-Dark";
+      gtk-theme = "Dracula";
+      icon-theme = "Tela-purple-dark";
       color-scheme = "prefer-dark";
     };
+  };
+
+  home.sessionVariables = {
+    GTK_THEME = "Dracula:dark";
   };
 }
