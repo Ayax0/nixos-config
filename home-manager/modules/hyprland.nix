@@ -133,8 +133,11 @@
       ];
 
       env = [
+        "WEBKIT_DISABLE_DMABUF_RENDERER,1"
+
         "ELECTRON_OZONE_PLATFORM_HINT,wayland"
         "ELECTRON_FORCE_DARK_MODE,true"
+        "ELECTRON_ENABLE_WAYLAND,1"
         
         "QT_QPA_PLATFORM,wayland;xcb"
       ];

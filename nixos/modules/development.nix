@@ -3,7 +3,6 @@
 {
   environment.systemPackages = with pkgs; [
     jetbrains.datagrip
-    figma-linux
     neovim
     vscode
     bruno

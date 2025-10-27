@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
@@ -23,7 +23,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, unstable, home-manager, ... }@inputs:
   let
     system = "x86_64-linux";
   in
