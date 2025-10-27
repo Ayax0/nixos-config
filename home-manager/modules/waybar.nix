@@ -15,7 +15,7 @@
         "custom/monitor" = {
           exec = "~/.config/waybar/scripts/monitor.sh";
           return-type = "json";
-          interval = 5;
+          interval = 60;
           format = "{icon} {text}";
           format-icons = {
             "default" = "  ";
