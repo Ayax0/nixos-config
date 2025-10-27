@@ -46,5 +46,7 @@
         ];
       };
     };
+
+    environment.systemPackages = with nixpkgs; [ home-manager ];
   };
 }

@@ -50,8 +50,8 @@
         "clock" = {
           timezone = "Europe/Zurich";
           tooltip = false;
-          format-alt = "{:%H:%M}";
-          format = "{:%H:%M - %d.%m.%Y}";
+          format-alt = "{:%%d.%m.%Y}";
+          format = "{:%d.%b - %H:%M}";
         };
 
         "custom/power" = {
@@ -91,7 +91,7 @@
         border: 2px solid @border;
         border-radius: 8px;
         margin-right: 5px;
-        padding: 5px 13px;
+        padding: 2px 13px;
       }
 
       #custom-monitor.sharing {
@@ -102,7 +102,7 @@
         background: @background;
         border: 2px solid @border;
         border-radius: 8px;
-        padding: 5px 2px 5px 2px;
+        padding: 2px;
       }
 
       #workspaces button.active {
@@ -119,7 +119,7 @@
         background: @background;
         border: 2px solid @border;
         border-radius: 8px;
-        padding: 5px 8px;
+        padding: 2px 8px;
         margin-right: 5px;
       }
 
@@ -127,7 +127,7 @@
         background: @background;
         border: 2px solid @border;
         border-radius: 8px;
-        padding: 5px 8px;
+        padding: 2px 8px;
         margin-right: 5px;
       }
 
@@ -135,7 +135,7 @@
         background: @background;
         border: 2px solid @border;
         border-radius: 8px;
-        padding: 5px 18px 5px 14px;
+        padding: 2px 18px 2px 14px;
       }
     '';
   };

@@ -4,13 +4,16 @@
   imports = [
     ./hardware-configuration.nix
     
+    ./modules/apps.nix
     ./modules/audio.nix
+    ./modules/development.nix
     ./modules/docker.nix
     ./modules/graphics.nix
     ./modules/hyprland.nix
     ./modules/language.nix
     ./modules/login.nix
     ./modules/network.nix
+    ./modules/utils.nix
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -35,21 +38,7 @@
 
   time.timeZone = "Europe/Zurich";
 
-  environment.systemPackages = with pkgs; [
-    home-manager
-    
-    ffmpeg
-    vscode
-    rustdesk
-    google-chrome
-    inputs.zen-browser.packages."${system}".default
-
-    nodejs_22
-    pnpm
-
-    bruno
-    teams-for-linux
-  ];
+  environment.systemPackages = with pkgs; [ ];
 
   programs.dconf.enable = true;  
 
