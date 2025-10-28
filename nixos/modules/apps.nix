@@ -16,7 +16,9 @@ in
     teleport_18
     obs-studio
     filezilla
+    onedrive
     gimp3
+    qgis
     vlc
   ];
 }
