@@ -25,6 +25,7 @@
     ./modules/nautilus.nix
     ./modules/rofi.nix
     ./modules/ssh.nix
+    ./modules/swaync.nix
     ./modules/themes.nix
     ./modules/mpvpaper.nix
     ./modules/waybar.nix

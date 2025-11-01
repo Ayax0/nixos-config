@@ -1,4 +1,10 @@
-{ inputs, system, ... }:
+{ 
+  pkgs,
+  config,
+  inputs,
+  system,
+  ...
+}:
 
 {
   wayland.windowManager.hyprland = {
@@ -112,6 +118,10 @@
         "bind = $mainMod SHIFT, 1, split-movetoworkspacesilent, 1"
         "bind = $mainMod SHIFT, 2, split-movetoworkspacesilent, 2"
         "bind = $mainMod SHIFT, 3, split-movetoworkspacesilent, 3"
+        
+        ", Print, exec, hyprshot -m window -o - | wl-copy"
+        "SHIFT, Print, exec, hyprshot -m region -o - | wl-copy"
+        "CTRL, Print, exec, hyprshot -m output -o - | wl-copy"
       ];
 
       bindm = [
@@ -140,7 +150,11 @@
         "ELECTRON_ENABLE_WAYLAND,1"
         
         "QT_QPA_PLATFORM,wayland;xcb"
+
+        "HYPRSHOT_DIR,${config.home.homeDirectory}/Pictures/Screenshots"
       ];
     };
   };
+
+  home.packages = with pkgs; [ hyprshot wl-clipboard ];
 }

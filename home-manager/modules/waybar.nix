@@ -8,9 +8,16 @@
         layer = "top";
         position = "top";
 
-        modules-left = [ "custom/monitor" "hyprland/workspaces" ];
+        modules-left = [
+          "custom/monitor"
+          "hyprland/workspaces"
+        ];
         modules-center = [ ];
-        modules-right = [ "pulseaudio" "clock" "custom/power" ];
+        modules-right = [
+          "pulseaudio"
+          "clock"
+          "custom/power"
+        ];
 
         "custom/monitor" = {
           exec = "~/.config/waybar/scripts/monitor.sh";
@@ -50,7 +57,7 @@
         "clock" = {
           timezone = "Europe/Zurich";
           tooltip = false;
-          format-alt = "{:%%d.%m.%Y}";
+          format-alt = "{:%d.%m.%Y}";
           format = "{:%d.%b - %H:%M}";
         };
 
