@@ -9,9 +9,10 @@
 
     Service = {
       ExecStart = ''
-        ${pkgs.mpvpaper}/bin/mpvpaper ALL -o "--loop --no-audio --keepaspect --panscan=1.0" /etc/nixos/assets/background.mp4
+        ${pkgs.mpvpaper}/bin/mpvpaper ALL -o "--loop --no-audio --gpu-api=vulkan --keepaspect --panscan=1.0" /etc/nixos/assets/background.mp4
       '';
-      Restart = "on-failure";
+      Restart = "always";
+      # RestartSec = "10m";
     };
 
     Install = {

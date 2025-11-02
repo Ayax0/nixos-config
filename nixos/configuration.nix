@@ -1,13 +1,20 @@
-{ config, pkgs, inputs, system, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  system,
+  ...
+}:
 
 {
   imports = [
     ./hardware-configuration.nix
-    
+
     ./modules/apps.nix
     ./modules/audio.nix
     ./modules/development.nix
     ./modules/docker.nix
+    ./modules/gaming.nix
     ./modules/graphics.nix
     ./modules/hyprland.nix
     ./modules/language.nix
@@ -16,7 +23,10 @@
     ./modules/utils.nix
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nixpkgs.config.allowUnfree = true;
 
   boot.loader.systemd-boot.enable = true;
@@ -28,9 +38,9 @@
   users.users.ayax0 = {
     isNormalUser = true;
     description = "Simon Gander";
-    extraGroups = [ 
+    extraGroups = [
       "networkmanager"
-      "seat" 
+      "seat"
       "wheel"
       "docker"
     ];
@@ -40,11 +50,11 @@
 
   environment.systemPackages = with pkgs; [ ];
 
-  programs.dconf.enable = true;  
+  programs.dconf.enable = true;
 
   services.dbus.enable = true;
   services.udisks2.enable = true;
-  
+
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
