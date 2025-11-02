@@ -10,12 +10,13 @@
   nixpkgs.config.allowUnfree = true;
 
   home = {
-    packages = with pkgs; [];
+    packages = with pkgs; [ ];
 
-    sessionVariables = {};
+    sessionVariables = { };
   };
 
   imports = [
+    ./modules/btop.nix
     ./modules/git.nix
     ./modules/hyprcursor.nix
     ./modules/hyprland.nix
