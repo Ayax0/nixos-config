@@ -57,7 +57,7 @@
         "clock" = {
           timezone = "Europe/Zurich";
           tooltip = false;
-          format-alt = "{:%d.%m.%Y}";
+          format-alt = "{:%H:%M:%S}";
           format = "{:%d.%b - %H:%M}";
         };
 

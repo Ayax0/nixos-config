@@ -22,6 +22,7 @@ in
     obs-studio
     filezilla
     onedrive
+    obsidian
     gimp3
     qgis
     vlc
