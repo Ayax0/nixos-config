@@ -13,6 +13,7 @@ in
 {
   environment.systemPackages = with pkgs; [
     inputs.zen-browser.packages.${system}.default
+    unstablePkgs.prusa-slicer
     unstablePkgs.rustdesk
     google-chrome
 
