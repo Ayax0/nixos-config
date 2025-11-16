@@ -17,7 +17,7 @@ in
     vscode
     bruno
 
-    nodejs_22
+    nodejs_24
     pnpm
 
     gcc
