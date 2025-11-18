@@ -23,6 +23,7 @@ in
     gcc
     gnumake
     python314
+    sonarlint-ls
     nixfmt-rfc-style
   ];
 }
