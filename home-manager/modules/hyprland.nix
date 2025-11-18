@@ -131,6 +131,7 @@
 
       windowrulev2 = [
         "opacity 0.92 0.92,class:^(.*)$"
+        "opacity 1.0 1.0, class:^(google-chrome)$"
 
         "float, title:^(Picture-in-Picture)$"
         "size 400 225, title:^(Picture-in-Picture)$"
