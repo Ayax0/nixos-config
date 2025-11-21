@@ -24,6 +24,7 @@ in
     gnumake
     python314
     sonarlint-ls
+    mongodb-compass
     nixfmt-rfc-style
   ];
 }
