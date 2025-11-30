@@ -19,6 +19,7 @@ in
 
     teams-for-linux
     davinci-resolve
+    freecad-wayland
     teleport_18
     obs-studio
     filezilla
