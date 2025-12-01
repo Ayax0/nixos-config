@@ -21,6 +21,7 @@
     ./modules/hyprcursor.nix
     ./modules/hyprland.nix
     ./modules/hyprlock.nix
+    ./modules/hyprpaper.nix
     ./modules/keeweb.nix
     ./modules/kitty.nix
     ./modules/nautilus.nix
@@ -28,7 +29,6 @@
     ./modules/ssh.nix
     ./modules/swaync.nix
     ./modules/themes.nix
-    ./modules/mpvpaper.nix
     ./modules/waybar.nix
     ./modules/wlogout.nix
   ];
