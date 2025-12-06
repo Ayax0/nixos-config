@@ -16,6 +16,7 @@
         modules-right = [
           "pulseaudio"
           "clock"
+          "tray"
           "custom/power"
         ];
 
@@ -59,6 +60,11 @@
           tooltip = false;
           format-alt = "{:%H:%M:%S}";
           format = "{:%d.%b - %H:%M}";
+        };
+
+        "tray" = {
+          icon-size = 20;
+          spacing = 10;
         };
 
         "custom/power" = {
@@ -131,6 +137,14 @@
       }
 
       #clock {
+        background: @background;
+        border: 2px solid @border;
+        border-radius: 8px;
+        padding: 2px 8px;
+        margin-right: 5px;
+      }
+
+      #tray {
         background: @background;
         border: 2px solid @border;
         border-radius: 8px;
