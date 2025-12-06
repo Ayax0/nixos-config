@@ -22,9 +22,11 @@ in
     freecad-wayland
     teleport_18
     obs-studio
+    rpi-imager
     filezilla
     onedrive
     obsidian
+    gparted
     gimp3
     qgis
     vlc
