@@ -15,6 +15,7 @@
     ./modules/development.nix
     ./modules/docker.nix
     ./modules/gaming.nix
+    ./modules/geo.nix
     ./modules/graphics.nix
     ./modules/hyprland.nix
     ./modules/language.nix
