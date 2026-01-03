@@ -21,7 +21,9 @@
     ./modules/language.nix
     ./modules/login.nix
     ./modules/network.nix
+    ./modules/nfs.nix
     ./modules/utils.nix
+    ./modules/vpn.nix
   ];
 
   nix.settings.experimental-features = [
