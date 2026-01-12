@@ -4,6 +4,9 @@
   boot.plymouth.enable = true;
 
   hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
+
+  programs.xwayland.enable = true;
 
   hardware.nvidia = {
     open = false;
@@ -20,6 +23,10 @@
     KERNEL=="card*", KERNELS=="0000:65:00.0", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", SYMLINK+="dri/nvidia-main"
     KERNEL=="card*", KERNELS=="0000:17:00.0", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", SYMLINK+="dri/nvidia-secondary"
   '';
+
+  environment.sessionVariables.VK_ICD_FILENAMES =
+    "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json:"
+    + "/run/opengl-driver-32/share/vulkan/icd.d/nvidia_icd.i686.json";
 
   environment.variables = {
     GBM_BACKEND = "nvidia-drm";

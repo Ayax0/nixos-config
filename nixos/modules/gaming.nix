@@ -11,5 +11,6 @@
     temurin-jre-bin-17
     modrinth-app
     prismlauncher
+    steam
   ];
 }
