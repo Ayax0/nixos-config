@@ -15,6 +15,7 @@
         modules-center = [ ];
         modules-right = [
           "pulseaudio"
+          "memory"
           "clock"
           "tray"
           "custom/power"
@@ -53,6 +54,12 @@
             ];
           };
           on-click = "pavucontrol";
+        };
+
+        "memory" = {
+          interval = 30;
+          format = "{}% ";
+          max-length = 10;
         };
 
         "clock" = {

@@ -14,6 +14,7 @@ in
   environment.systemPackages = with pkgs; [
     inputs.zen-browser.packages.${system}.default
     unstablePkgs.prusa-slicer
+    unstablePkgs.rpi-imager
     unstablePkgs.rustdesk
     google-chrome
 
@@ -22,7 +23,6 @@ in
     freecad-wayland
     teleport_18
     obs-studio
-    rpi-imager
     filezilla
     onedrive
     obsidian

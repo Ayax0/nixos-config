@@ -1,4 +1,9 @@
-{ pkgs, inputs, system, ... }:
+{
+  pkgs,
+  inputs,
+  system,
+  ...
+}:
 
 {
   programs.hyprland = {
@@ -16,7 +21,11 @@
     ];
     config = {
       common = {
-        default = [ "hyprland" "gtk" "wlr" ];
+        default = [
+          "hyprland"
+          "gtk"
+          "wlr"
+        ];
       };
     };
   };
@@ -30,5 +39,12 @@
 
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_TYPE = "wayland";
+  };
+
+  environment.sessionVariables = {
+    XDG_DATA_DIRS = [
+      "$HOME/.local/share/flatpak/exports/share"
+      "/run/current-system/sw/share"
+    ];
   };
 }
