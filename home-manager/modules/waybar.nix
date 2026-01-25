@@ -57,8 +57,8 @@
         };
 
         "memory" = {
-          interval = 30;
-          format = "{}% ";
+          interval = 10;
+          format = " {}%";
           max-length = 10;
         };
 
@@ -136,6 +136,14 @@
       }
 
       #pulseaudio {
+        background: @background;
+        border: 2px solid @border;
+        border-radius: 8px;
+        padding: 2px 8px;
+        margin-right: 5px;
+      }
+
+      #memory {
         background: @background;
         border: 2px solid @border;
         border-radius: 8px;

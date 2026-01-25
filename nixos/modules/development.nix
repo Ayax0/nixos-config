@@ -11,9 +11,13 @@ let
   };
 in
 {
+  programs.nix-ld.enable = true;
+
   environment.systemPackages = with pkgs; [
     inputs.neovim.packages.${system}.default
     jetbrains.datagrip
+    platformio
+    avrdude
     vscode
     bruno
 
@@ -26,5 +30,10 @@ in
     sonarlint-ls
     mongodb-compass
     nixfmt-rfc-style
+  ];
+
+  services.udev.packages = with pkgs; [
+    platformio-core.udev
+    openocd
   ];
 }

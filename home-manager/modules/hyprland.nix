@@ -12,14 +12,10 @@
     package = inputs.hyprland.packages.${system}.default;
 
     plugins = [
-      inputs.split-monitor-workspaces.packages.${system}.default
+      inputs.split-monitor-workspaces.packages.${system}.split-monitor-workspaces
     ];
 
     settings = {
-      exec-once = [
-        "hyprpm reload -n"
-      ];
-
       monitor = [
         "HDMI-A-1,1920x1080@60,0x0,1"
         "HDMI-A-3,1920x1080@60,1920x0,1"
@@ -80,7 +76,7 @@
       cursor.no_hardware_cursors = true;
 
       plugin = {
-        "split-monitor-workspaces" = {
+        split-monitor-workspaces = {
           count = 3;
         };
       };
@@ -129,18 +125,18 @@
         "$mainMod, mouse:273, resizewindow"
       ];
 
-      windowrulev2 = [
-        "opacity 0.92 0.92,class:^(.*)$"
-        "opacity 1.0 1.0, class:^(google-chrome)$"
+      windowrule = [
+        "opacity 0.92 0.92, match:class ^(.*)$"
+        "opacity 1.0 1.0, match:class ^(google-chrome)$"
 
-        "float, title:^(Picture-in-Picture)$"
-        "size 400 225, title:^(Picture-in-Picture)$"
-        "move 100%-420 100%-245, title:^(Picture-in-Picture)$"
-        "keepaspectratio, title:^(Picture-in-Picture)$"
+        "float on, match:title ^(Picture-in-Picture)$"
+        "size 400 225, match:title ^(Picture-in-Picture)$"
+        "move (monitor_w-420) (monitor_h-245), match:title ^(Picture-in-Picture)$"
+        "keep_aspect_ratio 1, match:title ^(Picture-in-Picture)$"
       ];
 
       layerrule = [
-        "blur, logout_dialog"
+        "blur on, match:namespace logout_dialog"
       ];
 
       env = [
