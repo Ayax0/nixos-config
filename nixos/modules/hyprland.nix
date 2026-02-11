@@ -2,7 +2,6 @@
   pkgs,
   inputs,
   system,
-  lib,
   ...
 }:
 
@@ -23,9 +22,6 @@
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
-    XDG_DATA_DIRS = lib.mkBefore [
-      "$HOME/.local/share/flatpak/exports/share"
-    ];
   };
 
   environment.systemPackages = with pkgs; [
