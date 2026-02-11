@@ -3,9 +3,12 @@
 {
   programs.ssh = {
     enable = true;
-    extraConfig = ''
-      Host *
-        SetEnv TERM=xterm
-    '';
+    enableDefaultConfig = false;
+
+    matchBlocks."*" = {
+      setEnv = {
+        TERM = "xterm";
+      };
+    };
   };
 }

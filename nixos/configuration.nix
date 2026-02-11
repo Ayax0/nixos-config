@@ -21,7 +21,7 @@
     ./modules/language.nix
     ./modules/login.nix
     ./modules/network.nix
-    ./modules/nfs.nix
+    # ./modules/nfs.nix
     ./modules/utils.nix
     ./modules/vpn.nix
   ];
@@ -51,7 +51,11 @@
 
   time.timeZone = "Europe/Zurich";
 
-  environment.systemPackages = with pkgs; [ ];
+  environment.systemPackages = with pkgs; [ 
+    home-manager
+    kitty
+    git
+  ];
 
   programs.dconf.enable = true;
 
@@ -65,6 +69,5 @@
 
   services.flatpak.enable = true;
 
-  system.stateVersion = "25.05";
-
+  system.stateVersion = "25.11";
 }

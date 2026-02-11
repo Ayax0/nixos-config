@@ -28,7 +28,6 @@ in
     obsidian
     gparted
     gimp3
-    qgis
     vlc
   ];
 }

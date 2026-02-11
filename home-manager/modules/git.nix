@@ -3,9 +3,11 @@
 {
   programs.git = {
     enable = true;
-    userName = "Simon Gander";
-    userEmail = "sg@vtt.ch";
-    extraConfig = {
+    settings = {
+      user = {
+        name = "Simon Gander";
+        email = "sg@vtt.ch";
+      };
       init.defaultBranch = "main";
       pull.rebase = true;
     };

@@ -10,19 +10,17 @@
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${system}.default;
-
+    
     plugins = [
       inputs.split-monitor-workspaces.packages.${system}.split-monitor-workspaces
     ];
 
     settings = {
       monitor = [
+        "DP-1,1920x1080@60,0x1080,1"
+        "DP-2,1920x1080@60,1920x1080,1"
         "HDMI-A-1,1920x1080@60,0x0,1"
-        "HDMI-A-3,1920x1080@60,1920x0,1"
-        "HDMI-A-4,1920x1080@60,3840x0,1"
-        "DP-2,1680x1050@60,240x1080,1"
-        "DP-3,1920x1080@60,1920x1080,1"
-        "DP-4,1920x1080@60,3840x1080,1"
+        "DP-3,1920x1080@60,1920x0,1"
       ];
 
       general = {

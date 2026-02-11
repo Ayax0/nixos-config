@@ -2,49 +2,33 @@
   pkgs,
   inputs,
   system,
+  lib,
   ...
 }:
 
 {
   programs.hyprland = {
     enable = true;
-    withUWSM = true;
     xwayland.enable = true;
+    
     package = inputs.hyprland.packages.${system}.default;
+    portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
   };
 
   xdg.portal = {
     enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-wlr
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = [ "hyprland" "gtk" ];
+  };
+
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    XDG_DATA_DIRS = lib.mkBefore [
+      "$HOME/.local/share/flatpak/exports/share"
     ];
-    config = {
-      common = {
-        default = [
-          "hyprland"
-          "gtk"
-          "wlr"
-        ];
-      };
-    };
   };
 
   environment.systemPackages = with pkgs; [
     egl-wayland
   ];
-
-  environment.variables = {
-    NIXOS_OZONE_WL = "1";
-
-    XDG_CURRENT_DESKTOP = "Hyprland";
-    XDG_SESSION_TYPE = "wayland";
-  };
-
-  environment.sessionVariables = {
-    XDG_DATA_DIRS = [
-      "$HOME/.local/share/flatpak/exports/share"
-      "/run/current-system/sw/share"
-    ];
-  };
 }
