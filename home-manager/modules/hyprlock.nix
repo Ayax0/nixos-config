@@ -16,7 +16,7 @@
       };
 
       input-field = {
-        monitor = "DP-2";
+        monitor = "DP-1";
         size = "300, 50";
         outline_thickness = 2;
         dots_center = true;
@@ -28,7 +28,7 @@
 
       label = [
         {
-          monitor = "DP-2";
+          monitor = "DP-1";
           text = "$TIME";
           font_size = 80;
           font_family = "JetBrains Mono Bold";

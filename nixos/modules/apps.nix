@@ -29,5 +29,9 @@ in
     gparted
     gimp3
     vlc
+
+    wine
+    winetricks
+    bottles
   ];
 }

@@ -46,6 +46,7 @@
       "seat"
       "wheel"
       "docker"
+      "lp"
     ];
   };
 
