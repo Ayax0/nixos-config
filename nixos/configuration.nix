@@ -35,6 +35,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "ntfs" ];
+  boot.kernelParams = [ "usbcore.autosuspend=-1" ];
 
   networking.hostName = "nixos";
 
@@ -52,7 +53,7 @@
 
   time.timeZone = "Europe/Zurich";
 
-  environment.systemPackages = with pkgs; [ 
+  environment.systemPackages = with pkgs; [
     home-manager
     kitty
     git
