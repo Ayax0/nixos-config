@@ -27,6 +27,7 @@ in
     gcc
     gnumake
     python314
+    mqtt-explorer
     # sonarlint-ls
     mongodb-compass
     nixfmt-rfc-style
