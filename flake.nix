@@ -15,6 +15,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    winapps = {
+      url = "github:winapps-org/winapps";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     neovim.url = "github:nix-community/neovim-nightly-overlay";
 
     hyprland.url = "github:hyprwm/Hyprland";
@@ -29,6 +34,7 @@
     {
       self,
       nixpkgs,
+      winapps,
       unstable,
       home-manager,
       ...

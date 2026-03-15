@@ -15,7 +15,7 @@ in
     inputs.zen-browser.packages.${system}.default
     unstablePkgs.prusa-slicer
     unstablePkgs.rpi-imager
-    unstablePkgs.rustdesk
+    # unstablePkgs.rustdesk-flutter
     google-chrome
 
     teams-for-linux

@@ -24,6 +24,7 @@
     # ./modules/nfs.nix
     ./modules/utils.nix
     ./modules/vpn.nix
+    ./modules/winapps.nix
   ];
 
   nix.settings.experimental-features = [
