@@ -10,6 +10,7 @@
   imports = [
     ./hardware-configuration.nix
 
+    ./modules/ai.nix
     ./modules/apps.nix
     ./modules/audio.nix
     ./modules/development.nix
