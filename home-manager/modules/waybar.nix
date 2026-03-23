@@ -14,6 +14,7 @@
         ];
         modules-center = [ ];
         modules-right = [
+          "bluetooth"
           "pulseaudio"
           "memory"
           "clock"
@@ -41,6 +42,12 @@
             "active" = "";
             "default" = "";
           };
+        };
+
+        "bluetooth" = {
+          format = "";
+          on-click = "blueberry";
+          tooltip-format = "{status}";
         };
 
         "pulseaudio" = {
@@ -133,6 +140,24 @@
       #workspaces button:hover {
         color: @foreground;
         background: rgba(255, 255, 255, 0.2);
+      }
+
+      #bluetooth {
+        background: @background;
+        border: 2px solid @border;
+        border-radius: 8px;
+        padding: 2px 8px;
+        margin-right: 5px;
+      }
+
+      #bluetooth.connected,
+      #bluetooth.on {
+        color: #4fc3f7;
+      }
+
+      #bluetooth.disabled,
+      #bluetooth.off {
+        color: #ef5350;
       }
 
       #pulseaudio {
