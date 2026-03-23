@@ -121,6 +121,16 @@
         "CTRL, Print, exec, hyprshot -m output"
       ];
 
+      bindl = [
+        ", code:215, exec, playerctl play-pause"
+        ", code:127, exec, playerctl play-pause"
+      ];
+
+      bindle = [
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+      ];
+
       bindm = [
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
@@ -156,5 +166,6 @@
 
   home.packages = with pkgs; [
     hyprshot
+    playerctl
   ];
 }
