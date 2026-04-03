@@ -12,12 +12,13 @@
           "custom/monitor"
           "hyprland/workspaces"
         ];
-        modules-center = [ ];
+        modules-center = [
+          "clock"
+          "custom/weather"
+        ];
         modules-right = [
-          "bluetooth"
           "pulseaudio"
           "memory"
-          "clock"
           "tray"
           "custom/power"
         ];
@@ -26,11 +27,7 @@
           exec = "~/.config/waybar/scripts/monitor.sh";
           return-type = "json";
           interval = 60;
-          format = "{icon} {text}";
-          format-icons = {
-            "default" = "  ";
-            "sharing" = "🔴  ";
-          };
+          format = "<span size='12000'>{text}</span>";
           tooltip = true;
         };
 
@@ -44,10 +41,17 @@
           };
         };
 
-        "bluetooth" = {
-          format = "";
-          on-click = "blueberry";
-          tooltip-format = "{status}";
+        "clock" = {
+          interval = 1;
+          timezone = "Europe/Zurich";
+          format = "<span size='12000' foreground='#87acf0'><b>{0:%H:%M:%S}</b></span>\n<span size='8000' foreground='#a7abc9'><b>{0:%A, %B %d}</b></span>";
+        };
+
+        "custom/weather" = {
+          exec = "~/.config/waybar/scripts/weather.sh";
+          interval = 600;
+          return-type = "json";
+          format = "{}";
         };
 
         "pulseaudio" = {
@@ -69,13 +73,6 @@
           max-length = 10;
         };
 
-        "clock" = {
-          timezone = "Europe/Zurich";
-          tooltip = false;
-          format-alt = "{:%H:%M:%S}";
-          format = "{:%d.%b - %H:%M}";
-        };
-
         "tray" = {
           icon-size = 20;
           spacing = 10;
@@ -91,17 +88,17 @@
 
     # CSS-Styling
     style = ''
-      @define-color primary    #ce53e0;
-      @define-color secondary  #a6adc8;
+      @define-color primary    #cba4f6;
+      @define-color secondary  #4a495f;
 
-      @define-color background rgba(100, 100, 100, 0.25);
-      @define-color foreground rgba(255, 255, 255, 0.8);
+      @define-color background #282840;
+      @define-color foreground #a7abc9;
 
-      @define-color card       rgba(255, 255, 255, 0.1);
-      @define-color border     rgba(166, 173, 200, 0.2);
+      @define-color border     #313248;
 
       * { 
         font-family: "JetBrainsMono Nerd Font";
+        min-height: 0;
       }
 
       window#waybar {
@@ -115,21 +112,27 @@
 
       #custom-monitor {
         background: @background;
-        border: 2px solid @border;
+        border: 1px solid @border;
         border-radius: 8px;
         margin-right: 5px;
-        padding: 2px 13px;
-      }
-
-      #custom-monitor.sharing {
-        color: red;
+        padding: 2px 12px;
       }
 
       #workspaces {
         background: @background;
-        border: 2px solid @border;
+        border: 1px solid @border;
         border-radius: 8px;
-        padding: 2px;
+        padding: 10px;
+      }
+
+      #workspaces button {
+        background: @secondary;
+        border-radius: 6px;
+        padding: 2px 6px;
+      }
+
+      #workspaces button:not(:last-child) {
+        margin-right: 10px;
       }
 
       #workspaces button.active {
@@ -142,61 +145,61 @@
         background: rgba(255, 255, 255, 0.2);
       }
 
-      #bluetooth {
+      #clock {
         background: @background;
-        border: 2px solid @border;
-        border-radius: 8px;
-        padding: 2px 8px;
-        margin-right: 5px;
+        border: 1px solid @border;
+        border-radius: 8px 0 0 8px;
+        border-right: none;
+        padding: 4px 25px 4px 12px;
+        margin-right: 0px;
       }
 
-      #bluetooth.connected,
-      #bluetooth.on {
-        color: #4fc3f7;
+      #custom-weather {
+        background: @background;
+        border: 1px solid @border;
+        border-radius: 0 8px 8px 0;
+        border-left: none;
+        padding: 4px 12px 4px 25px;
       }
 
-      #bluetooth.disabled,
-      #bluetooth.off {
-        color: #ef5350;
+      .modules-right {
+        background: @background;
+        border: 1px solid @border;
+        border-radius: 32px;
+        padding: 0;
       }
 
       #pulseaudio {
-        background: @background;
-        border: 2px solid @border;
-        border-radius: 8px;
-        padding: 2px 8px;
-        margin-right: 5px;
+        color: black;
+        background: linear-gradient(to right, #89b3f7, #7ac2ed);
+        border-radius: 20px;
+        margin: 5px;
+        margin-right: 0;
+        padding: 0 12px;
+        border: none;
       }
 
       #memory {
-        background: @background;
-        border: 2px solid @border;
-        border-radius: 8px;
-        padding: 2px 8px;
-        margin-right: 5px;
-      }
-
-      #clock {
-        background: @background;
-        border: 2px solid @border;
-        border-radius: 8px;
-        padding: 2px 8px;
-        margin-right: 5px;
+        color: black;
+        background: linear-gradient(to right, #cfa7f4, #efbce8);
+        border-radius: 20px;
+        margin: 5px;
+        padding: 0 12px;
+        border: none;
       }
 
       #tray {
-        background: @background;
-        border: 2px solid @border;
-        border-radius: 8px;
-        padding: 2px 8px;
-        margin-right: 5px;
+        border: none;
+        padding: 0 16px;
       }
 
       #custom-power {
-        background: @background;
-        border: 2px solid @border;
-        border-radius: 8px;
-        padding: 2px 18px 2px 14px;
+        border: none;
+        background: @secondary;
+        color: @primary;
+        margin: 5px;
+        border-radius: 20px;
+        padding: 0 15px 0 13px;
       }
     '';
   };
@@ -234,6 +237,52 @@
         --arg tooltip "$out (ID $id)" \
         --arg class "$class" \
         '{text: $text, tooltip: $tooltip, class: $class}'
+    '';
+  };
+
+  home.file.".config/waybar/scripts/weather.sh" = {
+    executable = true;
+    text = ''
+      #!/usr/bin/env bash
+
+      data="$(curl -s 'https://wttr.in/Lucerne?format=j1')"
+
+      temp="$(printf '%s' "$data" | jq -r '.current_condition[0].temp_C')"
+      desc="$(printf '%s' "$data" | jq -r '.current_condition[0].weatherDesc[0].value')"
+
+      case "$desc" in
+        *Sunny*|*Clear*)
+          icon="☀"
+          class="sunny"
+          ;;
+        *Partly\ cloudy*|*Cloudy*)
+          icon="☁"
+          class="cloudy"
+          ;;
+        *Overcast*)
+          icon="☁"
+          class="overcast"
+          ;;
+        *Rain*|*Drizzle*|*Patchy\ rain*)
+          icon="🌧"
+          class="rain"
+          ;;
+        *Snow*|*Sleet*|*Blizzard*)
+          icon="❄"
+          class="snow"
+          ;;
+        *Thunder*|*Storm*)
+          icon="⛈"
+          class="storm"
+          ;;
+        *)
+          icon=""
+          class="default"
+          ;;
+      esac
+
+      text="<span size='24000'>$icon</span> <span rise='5000' foreground='#f8b08a'><b>$temp°C</b></span>"
+      printf '{"text":"%s","tooltip":"%s"}\n' "$text" "$desc"
     '';
   };
 
