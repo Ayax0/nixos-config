@@ -144,6 +144,10 @@
         "size 400 225, match:title ^(Picture-in-Picture)$"
         "move (monitor_w-420) (monitor_h-245), match:title ^(Picture-in-Picture)$"
         "keep_aspect_ratio 1, match:title ^(Picture-in-Picture)$"
+
+        "float on, match:title ^(Volume Control)$"
+        "size 600 400, match:title ^(Volume Control)$"
+        "move (monitor_w-610) 64, match:title ^(Volume Control)$"
       ];
 
       layerrule = [

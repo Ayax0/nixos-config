@@ -35,7 +35,7 @@
     }
 
     .notification-content:hover {
-      background-color: #ff0000;
+      background-color: rgba(100, 100, 100, 0.4);
     }
   '';
 }
