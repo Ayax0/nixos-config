@@ -110,25 +110,30 @@
         padding: 5px 8px 0px 8px;
       }
 
-      #custom-monitor {
+      .modules-left {
         background: @background;
         border: 1px solid @border;
-        border-radius: 8px;
-        margin-right: 5px;
-        padding: 2px 12px;
+        border-radius: 32px;
+        padding: 0;
+      }
+
+      #custom-monitor {
+        background: linear-gradient(to right, #a6cfff, #d5a6f5);
+        color: black;
+        border-radius: 20px;
+        margin: 5px;
+        padding: 0 14px;
       }
 
       #workspaces {
-        background: @background;
-        border: 1px solid @border;
-        border-radius: 8px;
+        border: none;
         padding: 10px;
       }
 
       #workspaces button {
         background: @secondary;
-        border-radius: 6px;
-        padding: 2px 6px;
+        border-radius: 12px;
+        padding: 2px 4px;
       }
 
       #workspaces button:not(:last-child) {
@@ -138,11 +143,6 @@
       #workspaces button.active {
         color: @primary;
         transition: color 0.5s ease;
-      }
-
-      #workspaces button:hover {
-        color: @foreground;
-        background: rgba(255, 255, 255, 0.2);
       }
 
       #clock {
