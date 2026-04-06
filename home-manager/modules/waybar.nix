@@ -14,6 +14,7 @@
         ];
         modules-center = [
           "clock"
+          "image/weather"
           "custom/weather"
         ];
         modules-right = [
@@ -43,15 +44,15 @@
 
         "clock" = {
           interval = 1;
+          tooltip = false;
           timezone = "Europe/Zurich";
           format = "<span size='12000' foreground='#87acf0'><b>{0:%H:%M:%S}</b></span>\n<span size='8000' foreground='#a7abc9'><b>{0:%A, %B %d}</b></span>";
         };
 
         "custom/weather" = {
-          exec = "~/.config/waybar/scripts/weather.sh";
           interval = 600;
-          return-type = "json";
-          format = "{}";
+          exec = "curl -s 'https://wttr.in/Lucerne?format=%t'";
+          format = "<span rise='5000' foreground='#f8b08a'><b>{}</b></span>";
         };
 
         "pulseaudio" = {
@@ -145,21 +146,15 @@
         transition: color 0.5s ease;
       }
 
-      #clock {
+      .modules-center {
         background: @background;
         border: 1px solid @border;
-        border-radius: 8px 0 0 8px;
-        border-right: none;
-        padding: 4px 25px 4px 12px;
-        margin-right: 0px;
+        border-radius: 8px;
+        padding: 4px 12px;
       }
 
-      #custom-weather {
-        background: @background;
-        border: 1px solid @border;
-        border-radius: 0 8px 8px 0;
-        border-left: none;
-        padding: 4px 12px 4px 25px;
+      #clock {
+        margin-right: 24px;
       }
 
       .modules-right {
@@ -224,65 +219,11 @@
         id=0
       fi
 
-      # Prüfen, ob eine Bildschirmfreigabe aktiv ist
-      if pw-cli dump 2>/dev/null | grep -q 'node.name = "xdpw_screen"'; then
-        class="sharing"
-      else
-        class="default"
-      fi
-
       # Waybar-kompatible JSON-Ausgabe
       jq -n -c \
         --arg text "$id" \
         --arg tooltip "$out (ID $id)" \
-        --arg class "$class" \
-        '{text: $text, tooltip: $tooltip, class: $class}'
-    '';
-  };
-
-  home.file.".config/waybar/scripts/weather.sh" = {
-    executable = true;
-    text = ''
-      #!/usr/bin/env bash
-
-      data="$(curl -s 'https://wttr.in/Lucerne?format=j1')"
-
-      temp="$(printf '%s' "$data" | jq -r '.current_condition[0].temp_C')"
-      desc="$(printf '%s' "$data" | jq -r '.current_condition[0].weatherDesc[0].value')"
-
-      case "$desc" in
-        *Sunny*|*Clear*)
-          icon="☀"
-          class="sunny"
-          ;;
-        *Partly\ cloudy*|*Cloudy*)
-          icon="☁"
-          class="cloudy"
-          ;;
-        *Overcast*)
-          icon="☁"
-          class="overcast"
-          ;;
-        *Rain*|*Drizzle*|*Patchy\ rain*)
-          icon="🌧"
-          class="rain"
-          ;;
-        *Snow*|*Sleet*|*Blizzard*)
-          icon="❄"
-          class="snow"
-          ;;
-        *Thunder*|*Storm*)
-          icon="⛈"
-          class="storm"
-          ;;
-        *)
-          icon=""
-          class="default"
-          ;;
-      esac
-
-      text="<span size='24000'>$icon</span> <span rise='5000' foreground='#f8b08a'><b>$temp°C</b></span>"
-      printf '{"text":"%s","tooltip":"%s"}\n' "$text" "$desc"
+        '{text: $text, tooltip: $tooltip}'
     '';
   };
 
