@@ -26,6 +26,7 @@ in
     filezilla
     onedrive
     obsidian
+    audacity
     discord
     gparted
     gimp3
