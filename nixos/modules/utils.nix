@@ -6,5 +6,8 @@
     unzip
     ffmpeg
     ripgrep
+    fuse
+
+    fontconfig
   ];
 }
