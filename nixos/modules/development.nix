@@ -18,7 +18,7 @@ in
     jetbrains.datagrip
     platformio
     avrdude
-    vscode
+    unstablePkgs.vscode
     bruno
 
     nodejs_24

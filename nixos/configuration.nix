@@ -50,6 +50,7 @@
       "wheel"
       "docker"
       "lp"
+      "wireshark"
     ];
   };
 
@@ -61,6 +62,10 @@
     git
   ];
 
+  programs.wireshark = {
+    enable = true;
+    package = pkgs.wireshark;
+  };
   programs.dconf.enable = true;
 
   services.dbus.enable = true;

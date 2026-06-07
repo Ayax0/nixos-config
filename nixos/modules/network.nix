@@ -9,6 +9,8 @@
     ];
   };
 
+  networking.firewall.allowedUDPPorts = [ 6454 ];
+
   environment.etc."strongswan.conf".text = "";
 
   services.openssh.enable = true;

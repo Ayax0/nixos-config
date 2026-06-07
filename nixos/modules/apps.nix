@@ -15,6 +15,8 @@ in
     inputs.zen-browser.packages.${system}.default
     unstablePkgs.prusa-slicer
     unstablePkgs.rpi-imager
+    unstablePkgs.qlcplus
+    unstablePkgs.xlights
     # unstablePkgs.rustdesk-flutter
     google-chrome
 
@@ -24,12 +26,14 @@ in
     teleport_18
     obs-studio
     filezilla
+    inkscape
     onedrive
     obsidian
     audacity
     discord
     gparted
     gimp3
+    kicad
     vlc
 
     wine
