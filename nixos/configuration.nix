@@ -51,6 +51,7 @@
       "docker"
       "lp"
       "wireshark"
+      "dialout"
     ];
   };
 
@@ -70,6 +71,9 @@
 
   services.dbus.enable = true;
   services.udisks2.enable = true;
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [ libusb1 ];
 
   services.displayManager.sddm = {
     enable = true;
