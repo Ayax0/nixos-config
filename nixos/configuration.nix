@@ -73,7 +73,33 @@
   services.udisks2.enable = true;
 
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [ libusb1 ];
+  programs.nix-ld.libraries = with pkgs; [
+    libusb1
+    glib
+    nss
+    nspr
+    atk
+    cups
+    dbus
+    libdrm
+    gtk3
+    pango
+    cairo
+    xorg.libX11
+    xorg.libXcomposite
+    xorg.libXdamage
+    xorg.libXext
+    xorg.libXfixes
+    xorg.libXrandr
+    xorg.libxcb
+    mesa
+    libgbm
+    expat
+    alsa-lib
+    at-spi2-atk
+    libxkbcommon
+    libGL
+  ];
 
   services.displayManager.sddm = {
     enable = true;

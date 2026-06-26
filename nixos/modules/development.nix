@@ -19,6 +19,7 @@ in
     platformio
     avrdude
     unstablePkgs.vscode
+    claude-code
     bruno
 
     nodejs_24
