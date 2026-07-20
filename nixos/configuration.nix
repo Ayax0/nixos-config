@@ -37,7 +37,35 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "ntfs" ];
-  boot.kernelParams = [ "usbcore.autosuspend=-1" ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = [
+    "usbcore.autosuspend=-1"
+    "mem_sleep_default=s2idle"
+  ];
+  boot.consoleLogLevel = 7;
+
+  zramSwap = {
+    enable = true;
+    memoryPercent = 25;
+  };
+  # high swappiness recommended for zram: prefer compressing idle anon pages
+  boot.kernel.sysctl."vm.swappiness" = 180;
+
+  systemd.oomd = {
+    enable = true;
+    enableRootSlice = true;
+    enableUserSlices = true;
+    settings.OOM = {
+      DefaultMemoryPressureDurationSec = "20s";
+    };
+  };
+
+  systemd.sleep.extraConfig = ''
+    AllowSuspend=no
+    AllowHibernation=no
+    AllowSuspendThenHibernate=no
+    AllowHybridSleep=no
+  '';
 
   networking.hostName = "nixos";
 

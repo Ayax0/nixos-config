@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  boot.plymouth.enable = true;
+  # boot.plymouth.enable = true;
 
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;

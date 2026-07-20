@@ -9,5 +9,6 @@
     fuse
 
     fontconfig
+    appimage-run
   ];
 }

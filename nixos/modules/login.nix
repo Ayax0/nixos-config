@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   boot = {
-    consoleLogLevel = 3;
-    initrd.verbose = false;
+    consoleLogLevel = lib.mkDefault 3;
+    initrd.verbose = lib.mkDefault false;
     kernelParams = [
       "quiet"
       "splash"

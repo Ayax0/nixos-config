@@ -25,7 +25,9 @@ in
     nodejs_24
     pnpm
 
+    uv
     gcc
+    pipx
     gnumake
     python314
     mqtt-explorer
