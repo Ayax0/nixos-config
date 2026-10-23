@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+  programs.steam.enable = true;
+
   programs.java = {
     enable = true;
     package = pkgs.temurin-jre-bin;
@@ -11,6 +13,5 @@
     temurin-jre-bin-17
     modrinth-app
     prismlauncher
-    steam
   ];
 }

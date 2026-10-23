@@ -36,10 +36,12 @@
 
   services.flatpak.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    appimage-run
-    fuse
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
 
+  environment.systemPackages = with pkgs; [
     wine
     winetricks
     bottles

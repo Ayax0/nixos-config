@@ -1,7 +1,24 @@
-{ pkgs, ... }:
+{ pkgs, osConfig, ... }:
+
+let
+  # shows the hyprland monitor id of the bar's output
+  monitorId = pkgs.writeShellApplication {
+    name = "waybar-monitor-id";
+    runtimeInputs = [
+      pkgs.jq
+      osConfig.programs.hyprland.package
+    ];
+    text = ''
+      out="''${WAYBAR_OUTPUT_NAME:-$(hyprctl monitors -j | jq -r '.[0].name')}"
+      id="$(hyprctl monitors -j | jq -r --arg out "$out" '.[] | select(.name == $out) | .id')"
+      jq -n -c --arg id "''${id:-0}" --arg out "$out" '{text: $id, tooltip: "\($out) (ID \($id))"}'
+    '';
+  };
+in
 {
   programs.waybar = {
     enable = true;
+    systemd.enable = true;
 
     settings = [
       {
@@ -25,7 +42,7 @@
         ];
 
         "custom/monitor" = {
-          exec = "~/.config/waybar/scripts/monitor.sh";
+          exec = "${monitorId}/bin/waybar-monitor-id";
           return-type = "json";
           interval = 60;
           format = "<span size='12000'>{text}</span>";
@@ -199,54 +216,8 @@
     '';
   };
 
-  home.file.".config/waybar/scripts/monitor.sh" = {
-    executable = true;
-    text = ''
-      #!/usr/bin/env bash
-      set -euo pipefail
-
-      # Waybar setzt das pro-Output:
-      out="${"\${WAYBAR_OUTPUT_NAME:-}"}"
-
-      # Fallback: nimm den ersten Monitor, falls Var fehlt (sollte selten passieren)
-      if [[ -z "$out" ]]; then
-        out="$(hyprctl monitors -j | jq -r '.[0].name')"
-      fi
-
-      # ID zum Namen finden
-      id="$(hyprctl monitors -j | jq --arg out "$out" -r '.[] | select(.name==$out) | .id')"
-      if [[ -z "$id" || "$id" == "null" ]]; then
-        id=0
-      fi
-
-      # Waybar-kompatible JSON-Ausgabe
-      jq -n -c \
-        --arg text "$id" \
-        --arg tooltip "$out (ID $id)" \
-        '{text: $text, tooltip: $tooltip}'
-    '';
-  };
-
-  systemd.user.services.waybar = {
-    Unit = {
-      Description = "Waybar status bar";
-      PartOf = [ "graphical-session.target" ];
-      After = [ "graphical-session.target" ];
-    };
-    Service = {
-      ExecStart = "${pkgs.waybar}/bin/waybar";
-      Restart = "on-failure";
-      RestartSec = 3;
-      Environment = "XDG_CURRENT_DESKTOP=Hyprland";
-    };
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
-  };
-
   home.packages = with pkgs; [
     pavucontrol
     blueberry
-    jq
   ];
 }

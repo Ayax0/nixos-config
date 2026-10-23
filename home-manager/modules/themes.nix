@@ -21,15 +21,9 @@
     };
   };
 
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      gtk-theme = "Dracula";
-      icon-theme = "Tela-purple-dark";
-      color-scheme = "prefer-dark";
-    };
-  };
+  # gtk-theme, icon-theme and font are written to dconf by the gtk module
+  dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
 
-  home.sessionVariables = {
-    GTK_THEME = "Dracula:dark";
-  };
+  # libadwaita apps ignore gtk-theme; GTK_THEME forces Dracula on them too
+  home.sessionVariables.GTK_THEME = "Dracula:dark";
 }

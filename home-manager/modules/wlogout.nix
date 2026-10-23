@@ -1,51 +1,65 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
-  home.file.".config/wlogout/layout".text = ''
-    { "label": "lock", "action": "hyprlock" }
-    { "label": "logout", "action": "loginctl terminate-user $USER" }
-    { "label": "reboot", "action": "systemctl reboot" }
-    { "label": "shutdown",  "action": "systemctl poweroff" }
-  '';
+  programs.wlogout = {
+    enable = true;
 
-  home.file.".config/wlogout/style.css".text = ''
-    @define-color primary    #ce53e0;
+    layout = [
+      {
+        label = "lock";
+        action = "hyprlock";
+      }
+      {
+        label = "logout";
+        action = "loginctl terminate-user $USER";
+      }
+      {
+        label = "reboot";
+        action = "systemctl reboot";
+      }
+      {
+        label = "shutdown";
+        action = "systemctl poweroff";
+      }
+    ];
 
-    window {
-      background-color: transparent;
-    }
+    style = ''
+      @define-color primary    #ce53e0;
 
-    button {
-      margin: 10px 4px 10px 4px;
-      background-color: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 40%;
-    }
+      window {
+        background-color: transparent;
+      }
 
-    button:hover {
-      margin: 0px;
-      background-color: rgba(205, 83, 224, 0.1);
-      background-size: 45%;
-    }
+      button {
+        margin: 10px 4px 10px 4px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 40%;
+      }
 
-    #lock {
-      background-image: image(url("/etc/nixos/assets/icons/LucideLock.svg"));
-    }
+      button:hover {
+        margin: 0px;
+        background-color: rgba(205, 83, 224, 0.1);
+        background-size: 45%;
+      }
 
-    #logout {
-      background-image: image(url("/etc/nixos/assets/icons/LucideLogOut.svg"));
-    }
+      #lock {
+        background-image: image(url("/etc/nixos/assets/icons/LucideLock.svg"));
+      }
 
-    #reboot {
-      background-image: image(url("/etc/nixos/assets/icons/LucideRefreshCcw.svg"));
-    }
+      #logout {
+        background-image: image(url("/etc/nixos/assets/icons/LucideLogOut.svg"));
+      }
 
-    #shutdown {
-      background-image: image(url("/etc/nixos/assets/icons/LucidePower.svg"));
-    }
-  '';
+      #reboot {
+        background-image: image(url("/etc/nixos/assets/icons/LucideRefreshCcw.svg"));
+      }
 
-  home.packages = with pkgs; [ wlogout ];
+      #shutdown {
+        background-image: image(url("/etc/nixos/assets/icons/LucidePower.svg"));
+      }
+    '';
+  };
 }
