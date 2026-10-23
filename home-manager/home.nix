@@ -22,7 +22,7 @@
     ./modules/hyprland.nix
     ./modules/hyprlock.nix
     ./modules/hyprpaper.nix
-    ./modules/keeweb.nix
+    ./modules/keepassxc.nix
     ./modules/kitty.nix
     ./modules/nautilus.nix
     ./modules/rofi.nix
