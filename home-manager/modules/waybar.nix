@@ -68,7 +68,8 @@ in
 
         "custom/weather" = {
           interval = 600;
-          exec = "curl -s 'https://wttr.in/Lucerne?format=%t'";
+          # Luzern by coordinates: the name "Lucerne" resolves to Lucerne, California
+          exec = "curl -s 'https://wttr.in/47.05,8.31?format=%t'";
           format = "<span rise='5000' foreground='${c.peach}'><b>{}</b></span>";
         };
 
