@@ -195,6 +195,12 @@ in
     };
   };
 
+  # uwsm sources this for the whole session; without it home.sessionVariables
+  # (GTK_THEME, cursor, qt) only reach login shells, and the shell is not managed here
+  xdg.configFile."uwsm/env".text = ''
+    . "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh"
+  '';
+
   home.packages = with pkgs; [
     hyprshot
     playerctl
