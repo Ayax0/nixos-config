@@ -6,6 +6,7 @@
 }:
 
 let
+  c = import ../../catppuccin.nix;
   inherit (config.home-manager.users.ayax0) gtk home;
   hyprland = config.programs.hyprland.package;
   xkb = config.services.xserver.xkb;
@@ -45,6 +46,19 @@ in
     iconTheme = { inherit (gtk.iconTheme) package name; };
     font = { inherit (gtk.font) package name size; };
     cursorTheme = { inherit (home.pointerCursor) package name; };
+
+    # same backdrop as hyprlock, translucent panels like waybar and swaync
+    settings.background = {
+      path = "${../../assets/background-blur.png}";
+      fit = "Cover";
+    };
+    extraCss = ''
+      frame.background {
+        background-color: alpha(${c.base}, 0.85);
+        border: 1px solid alpha(${c.surface1}, 0.8);
+        border-radius: 16px;
+      }
+    '';
   };
   services.greetd.settings.default_session.command =
     "${pkgs.dbus}/bin/dbus-run-session ${hyprland}/bin/start-hyprland -- -c ${greeterConfig}";

@@ -1,10 +1,14 @@
 {
+  lib,
   pkgs,
   config,
   ...
 }:
 
 let
+  c = import ../../catppuccin.nix;
+  hex = lib.removePrefix "#";
+
   # plugin tags follow hyprland releases; the assertion below catches a hyprland update
   splitMonitorWorkspaces = pkgs.hyprlandPlugins.mkHyprlandPlugin (finalAttrs: {
     pluginName = "split-monitor-workspaces";
@@ -62,8 +66,8 @@ in
         gaps_in = 4;
         gaps_out = 8;
         border_size = 2;
-        "col.active_border" = "rgb(cba4f6)";
-        "col.inactive_border" = "rgb(4a495f)";
+        "col.active_border" = "rgb(${hex c.mauve})";
+        "col.inactive_border" = "rgb(${hex c.surface1})";
         resize_on_border = true;
         allow_tearing = false;
         layout = "dwindle";

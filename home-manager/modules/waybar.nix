@@ -1,6 +1,8 @@
 { pkgs, osConfig, ... }:
 
 let
+  c = import ../../catppuccin.nix;
+
   # shows the hyprland monitor id of the bar's output
   monitorId = pkgs.writeShellApplication {
     name = "waybar-monitor-id";
@@ -61,13 +63,13 @@ in
         "clock" = {
           interval = 1;
           tooltip = false;
-          format = "<span size='12000' foreground='#87acf0'><b>{0:%H:%M:%S}</b></span>\n<span size='8000' foreground='#a7abc9'><b>{0:%A, %B %d}</b></span>";
+          format = "<span size='12000' foreground='${c.blue}'><b>{0:%H:%M:%S}</b></span>\n<span size='8000' foreground='${c.subtext0}'><b>{0:%A, %B %d}</b></span>";
         };
 
         "custom/weather" = {
           interval = 600;
           exec = "curl -s 'https://wttr.in/Lucerne?format=%t'";
-          format = "<span rise='5000' foreground='#f8b08a'><b>{}</b></span>";
+          format = "<span rise='5000' foreground='${c.peach}'><b>{}</b></span>";
         };
 
         "pulseaudio" = {
@@ -104,13 +106,14 @@ in
 
     # CSS-Styling
     style = ''
-      @define-color primary    #cba4f6;
-      @define-color secondary  #4a495f;
+      @define-color primary    ${c.mauve};
+      @define-color secondary  ${c.surface1};
 
-      @define-color background #282840;
-      @define-color foreground #a7abc9;
+      @define-color background ${c.base};
+      @define-color foreground ${c.subtext1};
 
-      @define-color border     #313248;
+      @define-color border     ${c.surface0};
+      @define-color dark       ${c.crust};
 
       * { 
         font-family: "JetBrainsMono Nerd Font";
@@ -134,8 +137,8 @@ in
       }
 
       #custom-monitor {
-        background: linear-gradient(to right, #a6cfff, #d5a6f5);
-        color: black;
+        background: linear-gradient(to right, ${c.blue}, ${c.mauve});
+        color: @dark;
         border-radius: 20px;
         margin: 5px;
         padding: 0 14px;
@@ -180,8 +183,8 @@ in
       }
 
       #pulseaudio {
-        color: black;
-        background: linear-gradient(to right, #89b3f7, #7ac2ed);
+        color: @dark;
+        background: linear-gradient(to right, ${c.blue}, ${c.sapphire});
         border-radius: 20px;
         margin: 5px;
         margin-right: 0;
@@ -190,8 +193,8 @@ in
       }
 
       #memory {
-        color: black;
-        background: linear-gradient(to right, #cfa7f4, #efbce8);
+        color: @dark;
+        background: linear-gradient(to right, ${c.mauve}, ${c.pink});
         border-radius: 20px;
         margin: 5px;
         padding: 0 12px;

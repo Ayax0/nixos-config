@@ -1,5 +1,9 @@
-{ ... }:
+{ lib, ... }:
 
+let
+  c = import ../../catppuccin.nix;
+  hex = lib.removePrefix "#";
+in
 {
   programs.hyprlock = {
     enable = true;
@@ -20,10 +24,11 @@
         size = "300, 50";
         outline_thickness = 2;
         dots_center = true;
-        check_color = "rgba(203, 166, 247, 0.8)";
-        outer_color = "rgba(255, 255, 255, 0)";
-        inner_color = "rgba(255, 255, 255, 0.1)";
-        font_color = "rgb(200, 200, 200)";
+        outer_color = "rgba(${hex c.surface1}aa)";
+        inner_color = "rgba(${hex c.base}cc)";
+        font_color = "rgb(${hex c.text})";
+        check_color = "rgb(${hex c.mauve})";
+        fail_color = "rgb(${hex c.red})";
       };
 
       label = [
@@ -32,6 +37,7 @@
           text = "<b>$TIME</b>";
           font_size = 80;
           font_family = "JetBrainsMono Nerd Font";
+          color = "rgb(${hex c.text})";
           position = "0, 100";
         }
       ];

@@ -1,9 +1,12 @@
-{ ... }:
+{ lib, ... }:
 
+let
+  c = import ../../catppuccin.nix;
+in
 {
   programs.kitty = {
     enable = true;
-    themeFile = "Catppuccin-Mocha";
+    themeFile = "Catppuccin-${lib.toSentenceCase c.flavor}";
 
     settings = {
       font_family = "JetBrainsMono Nerd Font";

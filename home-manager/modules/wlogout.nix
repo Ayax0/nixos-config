@@ -1,5 +1,8 @@
 { ... }:
 
+let
+  c = import ../../catppuccin.nix;
+in
 {
   programs.wlogout = {
     enable = true;
@@ -24,16 +27,14 @@
     ];
 
     style = ''
-      @define-color primary    #ce53e0;
-
       window {
         background-color: transparent;
       }
 
       button {
         margin: 10px 4px 10px 4px;
-        background-color: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        background-color: alpha(${c.base}, 0.6);
+        border: 1px solid alpha(${c.surface1}, 0.8);
         background-repeat: no-repeat;
         background-position: center;
         background-size: 40%;
@@ -41,7 +42,8 @@
 
       button:hover {
         margin: 0px;
-        background-color: rgba(205, 83, 224, 0.1);
+        background-color: alpha(${c.mauve}, 0.15);
+        border-color: ${c.mauve};
         background-size: 45%;
       }
 

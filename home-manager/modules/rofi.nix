@@ -1,5 +1,8 @@
-{ ... }:
+{ config, ... }:
 
+let
+  c = import ../../catppuccin.nix;
+in
 {
   programs.rofi = {
     enable = true;
@@ -8,7 +11,7 @@
     extraConfig = {
       modi = "drun";
       show-icons = true;
-      icon-theme = "Tela-purple-dark";
+      icon-theme = config.gtk.iconTheme.name;
       drun-display-format = "{icon} {name}";
       disable-history = false;
       hide-scrollbar = true;
@@ -19,14 +22,14 @@
 
   xdg.configFile."rofi/mocha.rasi".text = ''
     * {
-      bg-col:  #1e1e2e;
-      bg-col-light: #1e1e2e;
-      border-col: #1e1e2e;
-      selected-col: #1e1e2e;
-      blue: #89b4fa;
-      fg-col: #cdd6f4;
-      fg-col2: #f38ba8;
-      grey: #6c7086;
+      bg-col: ${c.base};
+      bg-col-light: ${c.base};
+      border-col: ${c.surface0};
+      selected-col: ${c.surface0};
+      blue: ${c.mauve};
+      fg-col: ${c.text};
+      fg-col2: ${c.mauve};
+      grey: ${c.overlay0};
       width: 600;
       font: "JetBrainsMono Nerd Font 14";
     }

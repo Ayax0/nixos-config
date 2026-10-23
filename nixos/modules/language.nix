@@ -1,5 +1,8 @@
-{ ... }:
+{ lib, ... }:
 
+let
+  c = import ../../catppuccin.nix;
+in
 {
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
@@ -20,4 +23,25 @@
   };
 
   console.useXkbConfig = true;
+  console.colors = map (lib.removePrefix "#") (
+    with c;
+    [
+      base
+      red
+      green
+      yellow
+      blue
+      pink
+      teal
+      subtext1
+      surface2
+      red
+      green
+      yellow
+      blue
+      pink
+      teal
+      subtext0
+    ]
+  );
 }

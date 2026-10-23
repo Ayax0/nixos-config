@@ -1,5 +1,8 @@
 { ... }:
 
+let
+  c = import ../../catppuccin.nix;
+in
 {
   services.swaync = {
     enable = true;
@@ -18,12 +21,12 @@
       * {
         font-family: "JetBrainsMono Nerd Font";
         font-size: 12pt;
-        color: rgba(255, 255, 255, 0.8);
+        color: ${c.text};
       }
 
       .notification {
-        background-color: rgba(100, 100, 100, 0.25);
-        border: 2px solid rgba(166, 173, 200, 0.2);
+        background-color: alpha(${c.base}, 0.85);
+        border: 2px solid alpha(${c.surface1}, 0.8);
 
         border-radius: 8px;
       }
@@ -34,7 +37,7 @@
       }
 
       .notification-content:hover {
-        background-color: rgba(100, 100, 100, 0.4);
+        background-color: alpha(${c.surface0}, 0.9);
       }
     '';
   };
