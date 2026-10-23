@@ -1,5 +1,5 @@
 {
-  description = "Nixos Config";
+  description = "NixOS config";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
@@ -31,35 +31,22 @@
   };
 
   outputs =
+    { nixpkgs, home-manager, ... }@inputs:
     {
-      self,
-      nixpkgs,
-      winapps,
-      unstable,
-      home-manager,
-      ...
-    }@inputs:
-    let
-      system = "x86_64-linux";
-    in
-    {
-      nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs system; };
-          modules = [
-            ./nixos/configuration.nix
-          ];
-        };
-      };
-
-      homeConfigurations = {
-        ayax0 = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { inherit system; };
-          extraSpecialArgs = { inherit inputs system; };
-          modules = [
-            ./home-manager/home.nix
-          ];
-        };
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./nixos/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = { inherit inputs; };
+              users.ayax0 = ./home-manager/home.nix;
+            };
+          }
+        ];
       };
     };
 }

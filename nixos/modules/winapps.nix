@@ -1,12 +1,7 @@
-{
-  pkgs,
-  inputs,
-  system,
-  ...
-}:
+{ pkgs, inputs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
-    inputs.winapps.packages.${system}.winapps
+    inputs.winapps.packages.${pkgs.stdenv.hostPlatform.system}.winapps
   ];
 }

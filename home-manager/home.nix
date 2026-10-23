@@ -1,19 +1,7 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
-  home = {
-    username = "ayax0";
-    homeDirectory = "/home/ayax0";
-    stateVersion = "25.05";
-  };
-
-  nixpkgs.config.allowUnfree = true;
-
-  home = {
-    packages = with pkgs; [ ];
-
-    sessionVariables = { };
-  };
+  home.stateVersion = "25.05";
 
   imports = [
     ./modules/btop.nix
@@ -32,6 +20,4 @@
     ./modules/waybar.nix
     ./modules/wlogout.nix
   ];
-
-  programs.home-manager.enable = true;
 }

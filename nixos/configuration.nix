@@ -1,10 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  system,
-  ...
-}:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
@@ -34,6 +28,14 @@
     "flakes"
   ];
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [
+    (final: _: {
+      unstable = import inputs.unstable {
+        inherit (final.stdenv.hostPlatform) system;
+        config.allowUnfree = true;
+      };
+    })
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -90,7 +92,6 @@
   time.timeZone = "Europe/Zurich";
 
   environment.systemPackages = with pkgs; [
-    home-manager
     kitty
     git
   ];

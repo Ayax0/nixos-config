@@ -1,24 +1,14 @@
-{
-  pkgs,
-  inputs,
-  system,
-  ...
-}:
-let
-  unstablePkgs = import inputs.unstable {
-    system = system;
-    config.allowUnfree = true;
-  };
-in
+{ pkgs, inputs, ... }:
+
 {
   programs.nix-ld.enable = true;
 
   environment.systemPackages = with pkgs; [
-    inputs.neovim.packages.${system}.default
+    inputs.neovim.packages.${pkgs.stdenv.hostPlatform.system}.default
     jetbrains.datagrip
     platformio
     avrdude
-    unstablePkgs.vscode
+    unstable.vscode
     claude-code
     bruno
 

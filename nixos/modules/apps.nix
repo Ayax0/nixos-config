@@ -1,18 +1,8 @@
-{
-  pkgs,
-  inputs,
-  system,
-  ...
-}:
-let
-  unstablePkgs = import inputs.unstable {
-    system = system;
-    config.allowUnfree = true;
-  };
-in
+{ pkgs, inputs, ... }:
+
 {
   environment.systemPackages = with pkgs; [
-    (inputs.zen-browser.packages.${system}.default.override {
+    (inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
       extraPolicies = {
         Preferences = {
           # limit content processes; 2026-07-07 OOM: 32 content processes x ~1.1GB ate 30GB
@@ -27,11 +17,11 @@ in
         };
       };
     })
-    unstablePkgs.prusa-slicer
-    unstablePkgs.rpi-imager
-    unstablePkgs.qlcplus
-    unstablePkgs.xlights
-    # unstablePkgs.rustdesk-flutter
+    unstable.prusa-slicer
+    unstable.rpi-imager
+    unstable.qlcplus
+    unstable.xlights
+    # unstable.rustdesk-flutter
     google-chrome
 
     teams-for-linux

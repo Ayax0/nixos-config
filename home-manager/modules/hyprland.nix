@@ -2,17 +2,18 @@
   pkgs,
   config,
   inputs,
-  system,
   ...
 }:
 
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${system}.default;
+    # installed by the NixOS module
+    package = null;
+    portalPackage = null;
 
     plugins = [
-      inputs.split-monitor-workspaces.packages.${system}.split-monitor-workspaces
+      inputs.split-monitor-workspaces.packages.${pkgs.stdenv.hostPlatform.system}.split-monitor-workspaces
     ];
 
     settings = {
