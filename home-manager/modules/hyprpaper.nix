@@ -2,9 +2,9 @@
 {
   services.hyprpaper = {
     enable = true;
-    settings = {
-      preload = [ "${../../assets/background.png}" ];
-      wallpaper = [ ", ${../../assets/background.png}" ];
+    settings.wallpaper = {
+      monitor = "*";
+      path = "${../../assets/background.png}";
     };
   };
 }
