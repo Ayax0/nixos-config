@@ -3,14 +3,8 @@
 {
   programs.steam.enable = true;
 
-  programs.java = {
-    enable = true;
-    package = pkgs.temurin-jre-bin;
-  };
-
+  # prismlauncher ships its own jdks (8, 17, 21, 25), modrinth-app downloads them
   environment.systemPackages = with pkgs; [
-    temurin-jre-bin
-    temurin-jre-bin-17
     modrinth-app
     prismlauncher
   ];

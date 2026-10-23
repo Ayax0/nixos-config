@@ -1,6 +1,12 @@
 { pkgs, inputs, ... }:
 
 {
+  # global jdk; other versions per project via devShell
+  programs.java = {
+    enable = true;
+    package = pkgs.jdk25;
+  };
+
   programs.wireshark = {
     enable = true;
     package = pkgs.wireshark;
@@ -14,9 +20,6 @@
     unstable.vscode
     claude-code
     bruno
-
-    jdk21
-    jdk25
 
     nodejs_24
     pnpm
