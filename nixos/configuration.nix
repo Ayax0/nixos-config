@@ -23,6 +23,7 @@
     ./modules/login.nix
     ./modules/network.nix
     # ./modules/nfs.nix
+    ./modules/printing.nix
     ./modules/utils.nix
     ./modules/vpn.nix
     ./modules/winapps.nix
@@ -36,7 +37,10 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = [
+    "ntfs"
+    "exfat"
+  ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelParams = [
     "usbcore.autosuspend=-1"
@@ -99,6 +103,10 @@
 
   services.dbus.enable = true;
   services.udisks2.enable = true;
+  # cap page cache for usb disks so copy progress matches what is actually written
+  services.udev.extraRules = ''
+    ACTION=="add|change", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", ENV{ID_BUS}=="usb", ATTR{bdi/strict_limit}="1", ATTR{bdi/max_bytes}="33554432"
+  '';
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
