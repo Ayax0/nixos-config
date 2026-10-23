@@ -19,6 +19,7 @@
     ./modules/swaync.nix
     ./modules/themes.nix
     ./modules/waybar.nix
+    ./modules/wayvnc.nix
     ./modules/wlogout.nix
   ];
 }

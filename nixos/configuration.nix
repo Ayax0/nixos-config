@@ -21,6 +21,7 @@
     ./modules/network.nix
     ./modules/power.nix
     ./modules/printing.nix
+    ./modules/remote.nix
     ./modules/storage.nix
     ./modules/utils.nix
   ];

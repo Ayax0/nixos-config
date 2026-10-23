@@ -24,6 +24,9 @@
     unstable.rpi-imager
     unstable.qlcplus
     unstable.xlights
+    # outgoing sessions only: hyprland has no RemoteDesktop portal, so rustdesk
+    # cannot share this desktop; incoming access goes through wayvnc
+    unstable.rustdesk-flutter
     google-chrome
 
     teams-for-linux
