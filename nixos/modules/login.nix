@@ -1,8 +1,6 @@
 { ... }:
 
 {
-  # the hyprland package also ships "Hyprland (uwsm-managed)", listed first, which fails
-  # without uwsm; sddm ignores DefaultSession, so pick "Hyprland" once, it is remembered
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
