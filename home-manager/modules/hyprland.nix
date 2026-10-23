@@ -186,9 +186,6 @@ in
       ];
 
       env = [
-        # modrinth-app (webkitgtk) rendered blank with the dmabuf renderer
-        "WEBKIT_DISABLE_DMABUF_RENDERER,1"
-
         "QT_QPA_PLATFORM,wayland;xcb"
 
         "HYPRSHOT_DIR,${config.home.homeDirectory}/Pictures/Screenshots"
