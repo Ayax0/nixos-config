@@ -23,7 +23,12 @@
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }@inputs:
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
     {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
@@ -39,5 +44,16 @@
           }
         ];
       };
+
+      # node versions per project, like nvm: `use flake ~/nixos-config#node22` in its .envrc
+      devShells.x86_64-linux =
+        let
+          inherit (self.nixosConfigurations.nixos) pkgs;
+        in
+        {
+          node22 = pkgs.mkShell { packages = [ pkgs.nodejs_22 ]; };
+          node24 = pkgs.mkShell { packages = [ pkgs.nodejs_24 ]; };
+          node26 = pkgs.mkShell { packages = [ pkgs.nodejs_26 ]; };
+        };
     };
 }

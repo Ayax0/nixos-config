@@ -1,11 +1,14 @@
 { pkgs, ... }:
 
 {
-  # global jdk; other versions per project via devShell
+  # the only global jdk
   programs.java = {
     enable = true;
     package = pkgs.jdk25;
   };
+
+  # loads a project's .envrc, e.g. `use flake ~/nixos-config#node22`
+  programs.direnv.enable = true;
 
   programs.wireshark = {
     enable = true;
@@ -20,18 +23,18 @@
     unstable.vscode
     claude-code
     bruno
-
-    nodejs_24
-    pnpm
-
-    uv
-    gcc
-    pipx
-    gnumake
-    python314
     mqtt-explorer
     mongodb-compass
     nixfmt
+
+    # global, not per project: claude code hooks run node and python3, mcp servers
+    # start via npx, node-gyp needs gcc and make
+    nodejs_24
+    pnpm
+    python314
+    uv
+    gcc
+    gnumake
   ];
 
   services.udev.packages = with pkgs; [
