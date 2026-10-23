@@ -10,6 +10,7 @@
     ./modules/hyprland.nix
     ./modules/hyprlock.nix
     ./modules/hyprpaper.nix
+    ./modules/hyprpolkitagent.nix
     ./modules/keepassxc.nix
     ./modules/kitty.nix
     ./modules/nautilus.nix

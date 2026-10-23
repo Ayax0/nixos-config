@@ -52,6 +52,4 @@ in
   services.gnome.gnome-keyring.enable = true;
 
   security.pam.services.hyprlock.enableGnomeKeyring = true;
-
-  security.soteria.enable = true;
 }
