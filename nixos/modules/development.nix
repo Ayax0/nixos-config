@@ -41,4 +41,6 @@
     platformio-core.udev
     openocd
   ];
+  # openocd's rules name this group; access itself comes from their uaccess tag
+  users.groups.plugdev = { };
 }
