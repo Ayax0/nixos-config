@@ -1,19 +1,48 @@
 {
   pkgs,
   config,
-  inputs,
   ...
 }:
 
+let
+  # plugin tags follow hyprland releases; the assertion below catches a hyprland update
+  splitMonitorWorkspaces = pkgs.hyprlandPlugins.mkHyprlandPlugin (finalAttrs: {
+    pluginName = "split-monitor-workspaces";
+    version = "0.55.4";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "Duckonaut";
+      repo = "split-monitor-workspaces";
+      tag = "v${finalAttrs.version}";
+      hash = "sha256-AIg6hxip9hP6XWIqpjQOIripCdJQvtKSEubV+qL8mF8=";
+    };
+
+    nativeBuildInputs = with pkgs; [
+      meson
+      ninja
+    ];
+    buildInputs = [ pkgs.lua ];
+
+    meta.homepage = "https://github.com/Duckonaut/split-monitor-workspaces";
+  });
+in
 {
+  assertions = [
+    {
+      assertion = splitMonitorWorkspaces.version == pkgs.hyprland.version;
+      message = "split-monitor-workspaces ${splitMonitorWorkspaces.version} was built for another hyprland than ${pkgs.hyprland.version}: bump its version and hash";
+    }
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "hyprlang";
     # installed by the NixOS module
     package = null;
     portalPackage = null;
 
     plugins = [
-      inputs.split-monitor-workspaces.packages.${pkgs.stdenv.hostPlatform.system}.split-monitor-workspaces
+      splitMonitorWorkspaces
     ];
 
     settings = {

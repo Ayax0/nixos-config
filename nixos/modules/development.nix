@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   # global jdk; other versions per project via devShell
@@ -13,7 +13,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    inputs.neovim.packages.${pkgs.stdenv.hostPlatform.system}.default
+    neovim
     jetbrains.datagrip
     platformio
     avrdude
@@ -31,7 +31,7 @@
     python314
     mqtt-explorer
     mongodb-compass
-    nixfmt-rfc-style
+    nixfmt
   ];
 
   services.udev.packages = with pkgs; [

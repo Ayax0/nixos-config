@@ -4,11 +4,6 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-
-    matchBlocks."*" = {
-      setEnv = {
-        TERM = "xterm";
-      };
-    };
+    settings."*".SetEnv.TERM = "xterm";
   };
 }

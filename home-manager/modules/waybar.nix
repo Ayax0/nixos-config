@@ -216,6 +216,5 @@ in
 
   home.packages = with pkgs; [
     pavucontrol
-    blueberry
   ];
 }

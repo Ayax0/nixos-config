@@ -16,4 +16,6 @@
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
+  # bluetooth gui (blueman-manager)
+  services.blueman.enable = true;
 }
