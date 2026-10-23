@@ -40,6 +40,8 @@ in
     # installed by the NixOS module
     package = null;
     portalPackage = null;
+    # uwsm (NixOS module) starts graphical-session.target
+    systemd.enable = false;
 
     plugins = [
       splitMonitorWorkspaces
