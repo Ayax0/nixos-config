@@ -16,10 +16,8 @@
     ./modules/language.nix
     ./modules/login.nix
     ./modules/network.nix
-    # ./modules/nfs.nix
     ./modules/printing.nix
     ./modules/utils.nix
-    ./modules/vpn.nix
     ./modules/winapps.nix
   ];
 
@@ -92,7 +90,6 @@
   time.timeZone = "Europe/Zurich";
 
   environment.systemPackages = with pkgs; [
-    kitty
     git
   ];
 
@@ -100,9 +97,7 @@
     enable = true;
     package = pkgs.wireshark;
   };
-  programs.dconf.enable = true;
 
-  services.dbus.enable = true;
   services.udisks2.enable = true;
   # cap page cache for usb disks so copy progress matches what is actually written
   services.udev.extraRules = ''

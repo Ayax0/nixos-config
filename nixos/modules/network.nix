@@ -9,17 +9,11 @@
     ];
   };
 
-  networking.firewall.allowedUDPPorts = [ 6454 ];
-
+  # charon-nm from networkmanager_strongswan refuses to start without this file
   environment.etc."strongswan.conf".text = "";
 
   services.openssh.enable = true;
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
-
-  environment.systemPackages = with pkgs; [
-    networkmanager-l2tp
-    networkmanager_strongswan
-  ];
 }

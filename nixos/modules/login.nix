@@ -15,10 +15,7 @@
 
   services.gnome.gnome-keyring.enable = true;
 
-  security.pam.services.greetd.enableGnomeKeyring = true;
   security.pam.services.hyprlock.enableGnomeKeyring = true;
-
-  security.polkit.enable = true;
 
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";
@@ -33,6 +30,4 @@
       TimeoutStopSec = 10;
     };
   };
-
-  environment.systemPackages = with pkgs; [ polkit_gnome ];
 }

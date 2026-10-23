@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   services.hyprpaper = {
     enable = true;
@@ -7,6 +7,4 @@
       wallpaper = [ ", /etc/nixos/assets/background.png" ];
     };
   };
-
-  home.packages = with pkgs; [ hyprpaper ];
 }

@@ -1,8 +1,6 @@
 { pkgs, inputs, ... }:
 
 {
-  programs.nix-ld.enable = true;
-
   environment.systemPackages = with pkgs; [
     inputs.neovim.packages.${pkgs.stdenv.hostPlatform.system}.default
     jetbrains.datagrip

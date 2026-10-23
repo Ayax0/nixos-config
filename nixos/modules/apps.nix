@@ -1,6 +1,9 @@
 { pkgs, inputs, ... }:
 
 {
+  # Art-Net for qlcplus and xlights
+  networking.firewall.allowedUDPPorts = [ 6454 ];
+
   environment.systemPackages = with pkgs; [
     (inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
       extraPolicies = {
