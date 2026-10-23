@@ -1,6 +1,11 @@
 { pkgs, inputs, ... }:
 
 {
+  programs.wireshark = {
+    enable = true;
+    package = pkgs.wireshark;
+  };
+
   environment.systemPackages = with pkgs; [
     inputs.neovim.packages.${pkgs.stdenv.hostPlatform.system}.default
     jetbrains.datagrip
@@ -22,7 +27,6 @@
     gnumake
     python314
     mqtt-explorer
-    # sonarlint-ls
     mongodb-compass
     nixfmt-rfc-style
   ];

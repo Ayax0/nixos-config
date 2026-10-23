@@ -5,8 +5,8 @@
 
   imports = [
     ./modules/btop.nix
+    ./modules/cursor.nix
     ./modules/git.nix
-    ./modules/hyprcursor.nix
     ./modules/hyprland.nix
     ./modules/hyprlock.nix
     ./modules/hyprpaper.nix

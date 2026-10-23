@@ -24,7 +24,6 @@
     unstable.rpi-imager
     unstable.qlcplus
     unstable.xlights
-    # unstable.rustdesk-flutter
     google-chrome
 
     teams-for-linux
@@ -43,9 +42,5 @@
     gimp3
     kicad
     vlc
-
-    wine
-    winetricks
-    bottles
   ];
 }

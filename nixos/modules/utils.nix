@@ -6,9 +6,6 @@
     unzip
     ffmpeg
     ripgrep
-    fuse
-
     fontconfig
-    appimage-run
   ];
 }
