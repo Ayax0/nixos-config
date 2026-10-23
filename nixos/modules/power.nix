@@ -1,6 +1,7 @@
 { ... }:
 
 {
+  # suspend was disabled together with the navi 31 display fixes (see boot.nix)
   systemd.sleep.extraConfig = ''
     AllowSuspend=no
     AllowHibernation=no
@@ -8,9 +9,6 @@
     AllowHybridSleep=no
   '';
 
-  boot.kernelParams = [
-    # usb devices dropped out with autosuspend enabled
-    "usbcore.autosuspend=-1"
-    "mem_sleep_default=s2idle"
-  ];
+  # usb devices dropped out with autosuspend enabled
+  boot.kernelParams = [ "usbcore.autosuspend=-1" ];
 }

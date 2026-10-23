@@ -19,5 +19,5 @@
     variant = "de_nodeadkeys";
   };
 
-  console.keyMap = "sg";
+  console.useXkbConfig = true;
 }

@@ -47,7 +47,6 @@
     description = "Simon Gander";
     extraGroups = [
       "networkmanager"
-      "seat"
       "wheel"
       "docker"
       "lp"
