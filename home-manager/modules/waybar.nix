@@ -31,7 +31,6 @@ in
         ];
         modules-center = [
           "clock"
-          "image/weather"
           "custom/weather"
         ];
         modules-right = [
@@ -62,7 +61,6 @@ in
         "clock" = {
           interval = 1;
           tooltip = false;
-          timezone = "Europe/Zurich";
           format = "<span size='12000' foreground='#87acf0'><b>{0:%H:%M:%S}</b></span>\n<span size='8000' foreground='#a7abc9'><b>{0:%A, %B %d}</b></span>";
         };
 

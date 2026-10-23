@@ -68,14 +68,15 @@
         ];
       };
 
-      input.kb_layout = "ch";
+      input = {
+        kb_layout = "ch";
+        kb_variant = "de_nodeadkeys";
+      };
 
       misc = {
         force_default_wallpaper = 0;
         disable_hyprland_logo = true;
       };
-
-      cursor.no_hardware_cursors = true;
 
       plugin = {
         split-monitor-workspaces = {
@@ -109,13 +110,13 @@
         "$mainMod CTRL, up, movewindow, mon:u"
         "$mainMod CTRL, down, movewindow, mon:d"
 
-        "bind = $mainMod, 1, split-workspace, 1"
-        "bind = $mainMod, 2, split-workspace, 2"
-        "bind = $mainMod, 3, split-workspace, 3"
+        "$mainMod, 1, split-workspace, 1"
+        "$mainMod, 2, split-workspace, 2"
+        "$mainMod, 3, split-workspace, 3"
 
-        "bind = $mainMod SHIFT, 1, split-movetoworkspacesilent, 1"
-        "bind = $mainMod SHIFT, 2, split-movetoworkspacesilent, 2"
-        "bind = $mainMod SHIFT, 3, split-movetoworkspacesilent, 3"
+        "$mainMod SHIFT, 1, split-movetoworkspacesilent, 1"
+        "$mainMod SHIFT, 2, split-movetoworkspacesilent, 2"
+        "$mainMod SHIFT, 3, split-movetoworkspacesilent, 3"
 
         ", Print, exec, hyprshot -m window"
         "SHIFT, Print, exec, hyprshot -m region"
@@ -156,11 +157,8 @@
       ];
 
       env = [
+        # modrinth-app (webkitgtk) rendered blank with the dmabuf renderer
         "WEBKIT_DISABLE_DMABUF_RENDERER,1"
-
-        "ELECTRON_OZONE_PLATFORM_HINT,wayland"
-        "ELECTRON_FORCE_DARK_MODE,true"
-        "ELECTRON_ENABLE_WAYLAND,1"
 
         "QT_QPA_PLATFORM,wayland;xcb"
 

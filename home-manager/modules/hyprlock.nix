@@ -12,7 +12,7 @@
 
       background = {
         monitor = "";
-        path = "/etc/nixos/assets/background-blur.png";
+        path = "${../../assets/background-blur.png}";
       };
 
       input-field = {
@@ -29,9 +29,9 @@
       label = [
         {
           monitor = "DP-1";
-          text = "$TIME";
+          text = "<b>$TIME</b>";
           font_size = 80;
-          font_family = "JetBrains Mono Bold";
+          font_family = "JetBrainsMono Nerd Font";
           position = "0, 100";
         }
       ];

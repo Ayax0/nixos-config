@@ -8,7 +8,7 @@
     extraConfig = {
       modi = "drun";
       show-icons = true;
-      icon-theme = "Oranchelo";
+      icon-theme = "Tela-purple-dark";
       drun-display-format = "{icon} {name}";
       disable-history = false;
       hide-scrollbar = true;

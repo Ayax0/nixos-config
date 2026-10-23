@@ -46,19 +46,19 @@
       }
 
       #lock {
-        background-image: image(url("/etc/nixos/assets/icons/LucideLock.svg"));
+        background-image: image(url("${../../assets/icons}/LucideLock.svg"));
       }
 
       #logout {
-        background-image: image(url("/etc/nixos/assets/icons/LucideLogOut.svg"));
+        background-image: image(url("${../../assets/icons}/LucideLogOut.svg"));
       }
 
       #reboot {
-        background-image: image(url("/etc/nixos/assets/icons/LucideRefreshCcw.svg"));
+        background-image: image(url("${../../assets/icons}/LucideRefreshCcw.svg"));
       }
 
       #shutdown {
-        background-image: image(url("/etc/nixos/assets/icons/LucidePower.svg"));
+        background-image: image(url("${../../assets/icons}/LucidePower.svg"));
       }
     '';
   };
