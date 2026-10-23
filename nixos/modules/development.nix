@@ -22,6 +22,9 @@ in
     claude-code
     bruno
 
+    jdk21
+    jdk25
+
     nodejs_24
     pnpm
 
