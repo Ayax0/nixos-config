@@ -29,9 +29,9 @@ in
     gtk4.theme = null;
   };
 
+  # kvantum is only a style; qt keeps its default (portal) platform theme
   qt = {
     enable = true;
-    platformTheme.name = "kvantum";
     style.name = "kvantum";
   };
   home.packages = [
