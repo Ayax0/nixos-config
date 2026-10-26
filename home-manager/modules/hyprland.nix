@@ -130,6 +130,7 @@ in
         "$mainMod, E, exec, nautilus"
         "$mainMod, R, exec, rofi -show drun"
         "$mainMod, L, exec, hyprlock"
+        "$mainMod, F, fullscreen"
 
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
@@ -182,6 +183,10 @@ in
         "size 400 225, match:title ^(Picture-in-Picture)$"
         "move (monitor_w-420) (monitor_h-245), match:title ^(Picture-in-Picture)$"
         "keep_aspect_ratio 1, match:title ^(Picture-in-Picture)$"
+
+        # sdl-freerdp (winapps) inhibits compositor shortcuts while focused, so the
+        # super binds would go to windows instead of hyprland
+        "no_shortcuts_inhibit on, match:class ^(Microsoft Windows)$"
 
         "float on, match:title ^(Volume Control)$"
         "size 600 400, match:title ^(Volume Control)$"

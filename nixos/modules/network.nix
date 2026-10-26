@@ -1,6 +1,16 @@
 { pkgs, ... }:
 
 {
+  # L2TP/IPsec VPNs (fallegger) need IKEv1, which strongSwan >= 6.0 no longer builds by default:
+  # charon logs "IKE version 1 not supported" and nm-l2tp fails with "Could not establish IPsec connection".
+  nixpkgs.overlays = [
+    (_: prev: {
+      strongswan = prev.strongswan.overrideAttrs (old: {
+        configureFlags = (old.configureFlags or [ ]) ++ [ "--enable-ikev1" ];
+      });
+    })
+  ];
+
   networking.networkmanager = {
     enable = true;
     plugins = with pkgs; [
