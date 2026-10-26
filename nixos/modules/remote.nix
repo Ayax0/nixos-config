@@ -2,7 +2,11 @@
 
 {
   # private network to reach this machine from anywhere; log in once with `sudo tailscale up`
-  services.tailscale.enable = true;
+  # openFirewall lets peers connect directly instead of through a DERP relay
+  services.tailscale = {
+    enable = true;
+    openFirewall = true;
+  };
 
   # wayvnc (home-manager) is only reachable on the tailnet
   networking.firewall.interfaces.tailscale0.allowedTCPPorts = [
